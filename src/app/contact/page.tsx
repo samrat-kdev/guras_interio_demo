@@ -4,11 +4,12 @@ import Feedback from "@/components/Contact/Feedback"
 import Map from "@/components/Contact/Map"
 import Info from "@/components/Contact/Info"
 import { useState } from 'react'
-
+import Header from '@/components/Header'
 export default function Contact() {
 
   return (
     <main className="min-h-screen p-8">
+      <Header />
       <div className="flex justify-center items-center mt-4 mb-4">
         <h1 className="text-3xl md:text-5xl font-bold text-gray-800">
           Our <span className="relative inline-block group">

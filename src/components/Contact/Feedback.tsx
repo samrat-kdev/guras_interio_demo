@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Sendfull from "../Button/Sendfull";
 import { ChevronRight } from "lucide-react";
 
 const Feedback = () => {
