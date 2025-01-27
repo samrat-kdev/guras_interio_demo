@@ -74,7 +74,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#Portfolio"
+                href="/Portfolio"
                 className="block py-2 text-black hover:text-[#8e2d75] transition"
               >
                 Portfolio
@@ -82,7 +82,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#AboutUs"
+                href="/About"
                 className="block py-2 text-black hover:text-[#8e2d75] transition"
               >
                 About Us
