@@ -3,19 +3,36 @@
 import Head from "next/head"
 import Header from "@/components/Header"
 import AboutHero from "@/components/Hero/Abouthero"
+import AboutBan1 from "@/components/AboutComp/AboutBan1"
+import Footer from "@/components/Footer"
+import PhotoBooth from "@/components/AboutComp/PhotoBooth"
 
 export default function About() {
   return (
-    <main className="min-h-screen ">
+    <>
       <Header />
-
       <AboutHero />
-      <section className="prose max-w-3xl">
-        <h2>Our Story</h2>
-        {/* Add company history */}
-        <h2>Our Team</h2>
-        {/* Add team section */}
-      </section>
-    </main>
+      <main className=" flex flex-col items-center justify-center">
+        <section className="max-w-5xl text-center">
+          <h2 className="text-3xl font-bold text-[#8e2d75] mt-12">Do You Want To Know More?</h2>
+          <p className="text-center align-middle mt-6 text-lg">
+            Welcome to <b>Guras Interio</b>, where design meets functionality. We specialize in creating bespoke interiors that bring elegance, comfort, and a personal touch to your spaces. Whether it’s your home, office, or commercial space, we turn your vision into reality. At Guras Interio, we redefine luxury interiors with cutting-edge designs and impeccable craftsmanship.
+          </p>
+          <div>
+            <div className="p-10">
+
+              <AboutBan1 />
+            </div>
+            <div>
+              <PhotoBooth />
+            </div>
+          </div>
+          <h2 className="text-2xl font-semibold mb-4">Our Team</h2>
+          {/* Add team section */}
+        </section>
+      </main>
+      <Footer />
+    </>
   )
 }
+

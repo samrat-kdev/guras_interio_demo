@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const ContactHero = () => {
   return (
     <motion.section
-      className="relative min-h-[60vh] bg-cover bg-center flex items-end"
+      className="relative min-h-[70vh] bg-cover bg-center flex items-end"
       style={{ backgroundImage: `url('/assests/About.jpg')` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

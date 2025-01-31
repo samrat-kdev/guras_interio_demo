@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 const ContactHero = () => {
   return (
     <motion.section
-      className="relative min-h-[60vh] bg-cover bg-center flex items-end"
-      style={{ backgroundImage: `url('/assests/a.jpg')` }}
+      className="relative min-h-[75vh] bg-cover bg-center flex items-end"
+      style={{ backgroundImage: `url('/assests/b.jpg')` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
@@ -26,10 +26,10 @@ const ContactHero = () => {
         transition={{ duration: 1, delay: 0.8 }}
       >
         {/* Breadcrumb */}
-        <div className="text-sm mb-4 text-gray-300">
+        <div className="text-sm mb-4 text-white">
           <motion.a
-            href="/Home"
-            className="hover:text-white"
+            href="/"
+            className="hover:text-gray-100"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
@@ -42,7 +42,7 @@ const ContactHero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
           >
-            Portfolio
+            Home
           </motion.span>
         </div>
 
@@ -53,7 +53,7 @@ const ContactHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1.2 }}
         >
-          Our Portfolio
+          Home
           <motion.span
             className="block bg-[#8e2d75] w-20 h-2 mt-2"
             initial={{ scaleX: 0 }}

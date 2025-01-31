@@ -35,12 +35,13 @@ const Navbar = () => {
         >
           <ul className="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-8 p-4 lg:p-0">
             <li className="py-2">
-              <a href="#Home" className="text-black hover:text-[#8e2d75] transition">
+              <a href="/" className="text-black hover:text-[#8e2d75] transition">
                 Home
               </a>
             </li>
             <li className="py-2 relative">
               <button
+
                 className="flex items-center text-black hover:text-[#8e2d75] transition"
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
               >
@@ -51,20 +52,21 @@ const Navbar = () => {
                 <div className="absolute left-0 mt-2 bg-white border rounded shadow-lg w-full lg:w-auto z-50">
                   <ul className="flex flex-col">
                     {[
-                      "Modular Kitchen Closet",
-                      "TV Cabinet",
-                      "Office Furniture",
-                      "False Ceiling",
-                      "Wooden or Steel Railing",
-                      "Parqueting",
+                      { name: "Services", href: "/services/modular-kitchen-closet" },
+                      { name: "Modular Kitchen Closet", href: "/services/modular-kitchen-closet" },
+                      { name: "TV Cabinet", href: "/services/tv-cabinet" },
+                      { name: "Office Furniture", href: "/services/office-furniture" },
+                      { name: "False Ceiling", href: "/services/false-ceiling" },
+                      { name: "Wooden or Steel Railing", href: "/services/wooden-steel-railing" },
+                      { name: "Parqueting", href: "/services/parqueting" },
                     ].map((service) => (
-                      <li key={service}>
+                      <li key={service.name}>
                         <a
-                          href="#"
+                          href={service.href}
                           className="block px-4 py-2 text-black hover:bg-[#8e2d75] hover:text-white"
                           onClick={() => setIsServicesOpen(false)}
                         >
-                          {service}
+                          {service.name}
                         </a>
                       </li>
                     ))}
@@ -111,7 +113,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </header>
+    </header >
   );
 };
 

@@ -1,11 +1,13 @@
 'use client'
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
+import HomeHero from "@/components/Hero/Homehero"
 export default function Home() {
   return (
     <>
+      <Header />
+      <HomeHero />
       <main className="min-h-screen p-8">
-        <Header />
         <h1 className="text-3xl font-bold">GurasInterio</h1>
         <section className="my-8">
           <h2 className="text-2xl mb-4">Our Services</h2>
