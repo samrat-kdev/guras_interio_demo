@@ -37,7 +37,7 @@ const ContactHero = () => {
           </motion.a>
           <span className="mx-2">›</span>
           <motion.span
-            className="text-[#b24f99] underline"
+            className="text-white underline"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}

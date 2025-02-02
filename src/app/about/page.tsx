@@ -14,7 +14,7 @@ export default function About() {
       <AboutHero />
       <main className=" flex flex-col items-center justify-center">
         <section className="max-w-5xl text-center">
-          <h2 className="text-3xl font-bold text-[#8e2d75] mt-12">Do You Want To Know More?</h2>
+          <h2 className="text-3xl font-bold text-[#6b1b55] mt-12">Do You Want To Know More?</h2>
           <p className="text-center align-middle mt-6 text-lg">
             Welcome to <b>Guras Interio</b>, where design meets functionality. We specialize in creating bespoke interiors that bring elegance, comfort, and a personal touch to your spaces. Whether it’s your home, office, or commercial space, we turn your vision into reality. At Guras Interio, we redefine luxury interiors with cutting-edge designs and impeccable craftsmanship.
           </p>
@@ -27,8 +27,7 @@ export default function About() {
               <PhotoBooth />
             </div>
           </div>
-          <h2 className="text-2xl font-semibold mb-4">Our Team</h2>
-          {/* Add team section */}
+
         </section>
       </main>
       <Footer />

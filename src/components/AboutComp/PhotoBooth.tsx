@@ -5,7 +5,7 @@ export default function WorkOverview() {
     <section className="py-16 bg-white">
       <div className="text-center mb-8">
 
-        <h1 className="text-3xl font-bold text-gray-800">WORK OVERVIEW</h1>
+        <h1 className="text-3xl font-bold text-[#6b1b55]">WORK OVERVIEW</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto px-4">
         {/* Album */}

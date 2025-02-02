@@ -3,6 +3,7 @@
 import Head from "next/head"
 import Header from "@/components/Header"
 import PortfolioHero from "@/components/Hero/PortfolioHero"
+import Footer from "@/components/Footer"
 
 export default function Portfolio() {
   return (
@@ -15,6 +16,7 @@ export default function Portfolio() {
           {/* Add portfolio grid */}
         </div>
       </main>
+      <Footer />
     </>
   )
 }

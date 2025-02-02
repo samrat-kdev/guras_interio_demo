@@ -1,11 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const ContactHero = () => {
+const HomeHero = () => {
   return (
     <motion.section
-      className="relative min-h-[75vh] bg-cover bg-center flex items-end"
-      style={{ backgroundImage: `url('/assests/b.jpg')` }}
+      className="relative min-h-[94vh] bg-cover bg-center flex justify-center items-center"
+      style={{ backgroundImage: `url('/assests/About.jpg')` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
@@ -20,9 +20,9 @@ const ContactHero = () => {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 w-full px-6 sm:px-12 max-w-7xl mx-auto text-white pb-8"
+        className="relative z-10 w-full px-6 sm:px-12 max-w-7xl mx-auto text-white text-center pb-16 sm:pb-24"
         initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        animate={{ y: -20, opacity: 1 }}
         transition={{ duration: 1, delay: 0.8 }}
       >
         {/* Breadcrumb */}
@@ -48,23 +48,31 @@ const ContactHero = () => {
 
         {/* Heading */}
         <motion.h1
-          className="text-4xl sm:text-5xl font-bold"
+          className="text-3xl md:text-6xl font-serif font-bold mt-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1.2 }}
         >
-          Home
-          <motion.span
-            className="block bg-[#8e2d75] w-20 h-2 mt-2"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-            style={{ transformOrigin: "left" }}
-          ></motion.span>
+          GURAS INTERIOR
+          <motion.p
+            className="text-3xl md:text-xl font-serif  mt-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 1.2 }}>
+            A Complete Interio Solution
+
+            <motion.span
+              className="block bg-[#8e2d75] w-20 h-2 mt-2 mx-auto"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 1.5 }}
+              style={{ transformOrigin: "left" }}
+            ></motion.span>
+          </motion.p>
         </motion.h1>
       </motion.div>
     </motion.section>
   );
 };
 
-export default ContactHero;
+export default HomeHero;
