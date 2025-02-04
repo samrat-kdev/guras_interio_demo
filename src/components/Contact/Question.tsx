@@ -8,12 +8,13 @@ interface InquiryOption {
 } interface FeedbackProps {
   inquiryOptions: InquiryOption[];
 }
-
 const Feedback: React.FC<FeedbackProps> = ({ inquiryOptions }) => {
   const [inquiryType, setInquiryType] = useState("");
   const [projectType, setProjectType] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -97,6 +98,30 @@ const Feedback: React.FC<FeedbackProps> = ({ inquiryOptions }) => {
             <option value="office">Office</option>
             <option value="others">Others</option>
           </select>
+        </div>
+        <div>
+          <label htmlFor="Timeline" className="block text-sm font-medium text-gray-700 mb-1">
+            Timeline*
+          </label>
+          <input
+            type="Text"
+            id="Timeline"
+            placeholder="Enter your Timeline"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8e2d75]"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="Budget" className="block text-sm font-medium text-gray-700 mb-1">
+            Budget*
+          </label>
+          <input
+            type="Number"
+            id="Budget"
+            placeholder="Enter your Budget"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8e2d75]"
+            required
+          />
         </div>
 
         {/* Inquiry Type Dropdown */}

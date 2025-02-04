@@ -39,44 +39,62 @@ const Navbar = () => {
                 Home
               </a>
             </li>
-            <li className="py-2 relative">
-              <button
-
+            <li
+              className="py-2 relative group"
+              // Desktop: Use hover to show dropdown.
+              onMouseEnter={() => {
+                if (window.innerWidth >= 1024) setIsServicesOpen(true);
+              }}
+              onMouseLeave={() => {
+                if (window.innerWidth >= 1024) setIsServicesOpen(false);
+              }}
+            >
+              {/* The link navigates to /services */}
+              <a
+                href="/services"
                 className="flex items-center text-black hover:text-[#8e2d75] transition"
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                onClick={(e) => {
+                  // Mobile: toggle dropdown instead of navigating.
+                  if (window.innerWidth < 1024) {
+                    e.preventDefault();
+                    setIsServicesOpen((prev) => !prev);
+                  }
+                }}
               >
                 Services
                 <ChevronDown className="ml-1" />
-              </button>
-              {isServicesOpen && (
-                <div className="absolute left-0 mt-2 bg-white border rounded shadow-lg w-full lg:w-auto z-50">
-                  <ul className="flex flex-col">
-                    {[
-                      { name: "Services", href: "/services/modular-kitchen-closet" },
-                      { name: "Modular Kitchen Closet", href: "/services/modular-kitchen-closet" },
-                      { name: "TV Cabinet", href: "/services/tv-cabinet" },
-                      { name: "Office Furniture", href: "/services/office-furniture" },
-                      { name: "False Ceiling", href: "/services/false-ceiling" },
-                      { name: "Wooden or Steel Railing", href: "/services/wooden-steel-railing" },
-                      { name: "Parqueting", href: "/services/parqueting" },
-                    ].map((service) => (
-                      <li key={service.name}>
-                        <a
-                          href={service.href}
-                          className="block px-4 py-2 text-black hover:bg-[#8e2d75] hover:text-white"
-                          onClick={() => setIsServicesOpen(false)}
-                        >
-                          {service.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              </a>
+              {/* Dropdown Menu */}
+              <div
+                className={`absolute left-0 mt-2 bg-white border rounded shadow-lg w-full lg:w-auto z-50 transition-opacity duration-300 ${isServicesOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+                  } group-hover:opacity-100`}
+              >
+                <ul className="flex flex-col">
+                  {[
+                    { name: "Modular Kitchen Closet", href: "/ServicesComp/ModularKitchen" },
+                    { name: "TV Cabinet", href: "/ServicesComp/" },
+                    { name: "Office Furniture", href: "/services/office-furniture" },
+                    { name: "False Ceiling", href: "/services/false-ceiling" },
+                    { name: "Wooden or Steel Railing", href: "/services/wooden-steel-railing" },
+                    { name: "Parqueting", href: "/services/parqueting" },
+                  ].map((service) => (
+                    <li key={service.name}>
+                      <a
+                        href={service.href}
+                        className="block px-4 py-2 text-black hover:bg-[#8e2d75] hover:text-white transition"
+                        onClick={() => setIsServicesOpen(false)}
+                      >
+                        {service.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
+
             <li>
               <a
-                href="/Portfolio"
+                href="/portfolio"
                 className="block py-2 text-black hover:text-[#8e2d75] transition"
               >
                 Portfolio
@@ -84,7 +102,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="/About"
+                href="/about"
                 className="block py-2 text-black hover:text-[#8e2d75] transition"
               >
                 About Us
@@ -92,7 +110,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="/Contact"
+                href="/contact"
                 className="block py-2 text-black hover:text-[#8e2d75] transition"
               >
                 Contact Us

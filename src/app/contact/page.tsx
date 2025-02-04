@@ -1,12 +1,20 @@
 'use client'
 
-import Feedback from "@/components/Contact/Feedback"
+
 import Map from "@/components/Contact/Map"
 import Info from "@/components/Contact/Info"
 import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from "@/components/Footer"
 import ContactHero from "@/components/Hero/ContactHero"
+import Question from "@/components/Contact/Question"
+
+const inquiryOptions = [
+  { value: "general", label: "General Inquiry" },
+  { value: "support", label: "Support" },
+  { value: "feedback", label: "Feedback" },
+  { value: "other", label: "Other" }
+];
 export default function Contact() {
 
   return (
@@ -28,7 +36,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-10">
           <div>
             <form className="space-y-4">
-              <Feedback />
+              <Question inquiryOptions={inquiryOptions} />
             </form>
           </div>
 
@@ -41,4 +49,5 @@ export default function Contact() {
       <Footer />
     </>
   )
+
 }

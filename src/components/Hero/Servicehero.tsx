@@ -1,11 +1,13 @@
 import React from "react";
+import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const ContactHero = () => {
   return (
     <motion.section
-      className="relative min-h-[70vh] bg-cover bg-center flex items-end"
-      style={{ backgroundImage: `url('/assests/Y.jpg')` }}
+      className="relative min-h-[75vh] bg-cover bg-center flex items-end"
+      style={{ backgroundImage: `url('/assests/t.jpg')` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
@@ -26,10 +28,10 @@ const ContactHero = () => {
         transition={{ duration: 1, delay: 0.8 }}
       >
         {/* Breadcrumb */}
-        <div className="text-sm mb-4 text-gray-300">
+        <div className="text-sm mb-4 text-white">
           <motion.a
             href="/"
-            className="hover:text-gray-100"
+            className="hover:text-white"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
@@ -37,23 +39,23 @@ const ContactHero = () => {
           </motion.a>
           <span className="mx-2">›</span>
           <motion.span
-            className="text-[#FFFFFF] underline"
+            className="text-white underline"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
           >
-            About Us
+            Services
           </motion.span>
         </div>
 
         {/* Heading */}
         <motion.h1
-          className="text-4xl sm:text-5xl font-bold"
+          className="text-4xl sm:text-5xl font-bold text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1.2 }}
         >
-          About Us
+          Services
           <motion.span
             className="block bg-[#8e2d75] w-20 h-2 mt-2"
             initial={{ scaleX: 0 }}

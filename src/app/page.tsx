@@ -29,6 +29,7 @@ export default function Home() {
         </section>
 
       </main>
+      <div className="w-full h-1 bg-gray-200">.</div>
       <div>
         <HomeBan3 />
       </div>

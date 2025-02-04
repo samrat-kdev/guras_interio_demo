@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { PhoneCall } from 'lucide-react';
 
 export default function Services() {
-  const [selected, setSelected] = useState<number | null>(null); // 👈 Fix: Allow number or null
+  const [selected, setSelected] = useState<number | null>(null);
 
   const services = [
     {
@@ -46,7 +46,7 @@ export default function Services() {
                 }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setSelected(index)} // ✅ No more error!
+              onClick={() => setSelected(index)}
             >
               <h3 className="text-2xl font-semibold mb-4">
                 <br />
