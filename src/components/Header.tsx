@@ -1,3 +1,4 @@
+'use client';
 import { Phone, Mail, Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
@@ -71,11 +72,12 @@ const Navbar = () => {
               >
                 <ul className="flex flex-col">
                   {[
-                    { name: "Modular Kitchen Closet", href: "/ServicesComp/ModularKitchen" },
-                    { name: "TV Cabinet", href: "/ServicesComp/" },
-                    { name: "Office Furniture", href: "/services/office-furniture" },
-                    { name: "False Ceiling", href: "/services/false-ceiling" },
-                    { name: "Wooden or Steel Railing", href: "/services/wooden-steel-railing" },
+                    { name: "Closet", href: "/services/closet" },
+                    { name: "Modular Kitchen Closet", href: "/services/modularkitchen" },
+                    { name: "TV Cabinet", href: "/services/tvcabinet" },
+                    { name: "Office Furniture", href: "/services/officefurniture" },
+                    { name: "False Ceiling", href: "/services/falseceiling" },
+                    { name: "Wooden or Steel Railing", href: "/services/woodenandsteelrailing" },
                     { name: "Parqueting", href: "/services/parqueting" },
                   ].map((service) => (
                     <li key={service.name}>
