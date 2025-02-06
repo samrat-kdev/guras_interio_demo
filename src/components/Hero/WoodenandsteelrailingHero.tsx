@@ -7,7 +7,7 @@ const HomeHero = () => {
   return (
     <motion.section
       className="relative min-h-[92vh] bg-cover bg-center flex justify-center items-center"
-      style={{ backgroundImage: `url('/assests/woo.jpg')` }}
+      style={{ backgroundImage: `url('/assests/Stairailings.jpeg')` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
