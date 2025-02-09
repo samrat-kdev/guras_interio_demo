@@ -11,7 +11,7 @@ export default function Services() {
     <>
       <Header />
       <ServiceHero />
-      <main className="min-h-screen p-8">
+      <main className="min-h-screen p-6">
         <div className="text-center my-10">
           <div className="flex items-center justify-center">
             <div className="w-16 border-t-2 border-[#6b1b55]"></div>
