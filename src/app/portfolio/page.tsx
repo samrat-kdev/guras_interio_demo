@@ -1,21 +1,31 @@
 'use client'
 
-import Head from "next/head"
 import Header from "@/components/Header"
 import PortfolioHero from "@/components/Hero/PortfolioHero"
 import Footer from "@/components/Footer"
-
+import PortfolioComp from "@/components/Portfolio/PortfolioComp"
+import PortGallery from "@/components/Portfolio/PortGallery"
+import PhotoBooth from "@/components/AboutComp/PhotoBooth"
+import Portest from "@/components/Portfolio/Portest"
 export default function Portfolio() {
   return (
     <>
       <Header />
       <PortfolioHero />
-      <main className="min-h-screen p-8">
-        <h1 className="text-3xl font-bold mb-8">Our Portfolio</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Add portfolio grid */}
-        </div>
-      </main>
+
+      <Portest />
+
+      <PortGallery />
+      <div className="py-9 text-center px-10 mt-4">
+        <h2 className="text-4xl font-bold font-serif mt-2">Changes That Guras Have Made</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam harum recusandae sapiente nihil suscipit in excepturi quos at quo iusto. Ullam, quisquam distinctio aliquam atque sed dolore laudantium reprehenderit dolores.</p>
+        <PortfolioComp />
+      </div>
+
+      <PhotoBooth />
+
+
+
       <Footer />
     </>
   )
