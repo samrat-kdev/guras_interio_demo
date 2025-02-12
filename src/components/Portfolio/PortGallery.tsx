@@ -3,7 +3,11 @@ import Image from "next/image";
 
 const PortGallery = () => {
   return (
-    <>
+    <div className="min-h-screen mt-10 px-4">
+      <h2 className="text-center text-3xl sm:text-4xl font-bold font-serif mt-2">
+        Projects Gallery from Guras Interio
+      </h2>
+
       {/* Large Image */}
       <div className="flex justify-center items-center p-4">
         <Image
@@ -11,55 +15,34 @@ const PortGallery = () => {
           alt="Gallery Image 1"
           width={800}
           height={400}
-          className="max-w-full h-auto rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+          className="w-full max-w-3xl h-auto rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
         />
       </div>
 
       {/* Grid of Smaller Images */}
-      <div className="flex justify-center gap-3">
-        {/* Image 1 */}
-        <div className="relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-          <Image
-            src="/assests/tvcabinet.jpg"
-            alt="Gallery Image 2"
-            width={100}
-            height={80}
-            className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-cover rounded-lg"
-          />
-        </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-center p-4">
+        {[
+          "/assests/tvcabinet.jpg",
+          "/assests/wooden.jpg",
+          "/assests/tvcabinet.jpg",
+          "/assests/c.jpg",
 
-        {/* Image 2 */}
-        <div className="relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-          <Image
-            src="/assests/wooden.jpg"
-            alt="Gallery Image 3"
-            width={100}
-            height={80}
-            className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-cover rounded-lg"
-          />
-        </div>
-
-        {/* Image 3 */}
-        <div className="relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-          <Image
-            src="/assests/tvcabinet.jpg"
-            alt="Gallery Image 4"
-            width={100}
-            height={80}
-            className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-cover rounded-lg"
-          />
-        </div>
-        <div className="relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-          <Image
-            src="/assests/c.jpg"
-            alt="Gallery Image 4"
-            width={100}
-            height={80}
-            className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-cover rounded-lg"
-          />
-        </div>
+        ].map((src, index) => (
+          <div
+            key={index}
+            className="relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 group"
+          >
+            <Image
+              src={src}
+              alt={`Gallery Image ${index + 2}`}
+              width={100}
+              height={80}
+              className="w-full h-auto object-cover rounded-lg group-hover:scale-125 group-hover:z-10 transition-transform duration-300"
+            />
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

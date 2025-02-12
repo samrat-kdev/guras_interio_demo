@@ -1,7 +1,8 @@
-'use client';
+"use client";
 import { Phone, Mail, Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -37,32 +38,35 @@ const Navbar = () => {
           >
             <ul className="flex flex-col lg:flex-row items-start lg:items-center lg:space-x-8 p-4 lg:p-0">
               <li className="py-2">
-                <a href="/" className="text-black hover:text-[#8e2d75] transition">
+                <Link href="/" className="text-black hover:text-[#8e2d75] transition">
                   Home
-                </a>
+                </Link>
               </li>
+
+              {/* Services Dropdown (Now Clickable) */}
               <li
-                className="py-2 relative group"
+                className="py-2 relative"
                 onMouseEnter={() => window.innerWidth >= 1024 && setIsServicesOpen(true)}
                 onMouseLeave={() => window.innerWidth >= 1024 && setIsServicesOpen(false)}
               >
-                <a
-                  href="/services"
-                  className="flex items-center text-black hover:text-[#8e2d75] transition"
-                  onClick={(e) => {
-                    if (window.innerWidth < 1024) {
-                      e.preventDefault();
-                      setIsServicesOpen((prev) => !prev);
-                    }
-                  }}
-                >
-                  Services
-                  <ChevronDown className="ml-1" />
-                </a>
+                <div className="flex items-center justify-between w-full lg:w-auto">
+                  <Link
+                    href="/services"
+                    className="text-black hover:text-[#8e2d75] transition w-full lg:w-auto"
+                  >
+                    Services
+                  </Link>
+                  <button
+                    className="ml-2 focus:outline-none lg:hidden"
+                    onClick={() => setIsServicesOpen(!isServicesOpen)}
+                  >
+                    <ChevronDown className={`transition-transform ${isServicesOpen ? "rotate-180" : "rotate-0"}`} />
+                  </button>
+                </div>
+
                 {/* Dropdown Menu */}
                 <div
-                  className={`absolute left-0 mt-2 bg-white border rounded shadow-lg w-full lg:w-auto z-50 transition-opacity duration-300 ${isServicesOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-                    } group-hover:opacity-100`}
+                  className={`absolute lg:left-0 mt-2 bg-white border rounded shadow-lg w-64 z-50 transition-all duration-300 ease-in-out transform ${isServicesOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}
                 >
                   <ul className="flex flex-col">
                     {[
@@ -75,32 +79,33 @@ const Navbar = () => {
                       { name: "Parqueting", href: "/services/parqueting" },
                     ].map((service) => (
                       <li key={service.name}>
-                        <a
+                        <Link
                           href={service.href}
                           className="block px-4 py-2 text-black hover:bg-[#8e2d75] hover:text-white transition"
                           onClick={() => setIsServicesOpen(false)}
                         >
                           {service.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
               </li>
+
               <li>
-                <a href="/portfolio" className="block py-2 text-black hover:text-[#8e2d75] transition">
+                <Link href="/portfolio" className="block py-2 text-black hover:text-[#8e2d75] transition">
                   Portfolio
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/about" className="block py-2 text-black hover:text-[#8e2d75] transition">
+                <Link href="/about" className="block py-2 text-black hover:text-[#8e2d75] transition">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="block py-2 text-black hover:text-[#8e2d75] transition">
+                <Link href="/contact" className="block py-2 text-black hover:text-[#8e2d75] transition">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
