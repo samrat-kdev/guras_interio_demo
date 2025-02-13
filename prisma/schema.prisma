@@ -46,13 +46,13 @@ datasource db {
   pricing     Json?    // Stores pricing information
   imageUrl    String?
   categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id])
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
- }
- // Portfolio projects
- model Project {
+}
+
+model Project {
   id          String   @id @default(cuid())
   title       String
   description String   @db.Text
@@ -60,13 +60,14 @@ datasource db {
   client      String?
   completionDate DateTime?
   categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id])
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   images      ProjectImage[]
   featured    Boolean  @default(false)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
- }
+}
+
  // Project images
  model ProjectImage {
   id        String   @id @default(cuid())

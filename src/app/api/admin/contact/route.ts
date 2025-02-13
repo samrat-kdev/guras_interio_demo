@@ -5,9 +5,9 @@ import {Contact} from "@/types/index";
 export async function GET() {
     try {
         const contacts = await prisma.contact.findMany();
-        return NextResponse.json(contacts);
+        return NextResponse.json(contacts, { status: 200 });
     } catch (error) {
-      console.log(error)
+        console.log(error)
         return NextResponse.json ({ error: 'Failed to fetch contacts'}, {status: 500});
     }
 }
