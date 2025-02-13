@@ -4,12 +4,12 @@ import { Facebook, Instagram, Phone } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#f5f5f5] border-t border-gray-200 py-8 shadow-2xl">
+    <footer className="bg-[#6b1b55] border-t border-gray-200 py-8 shadow-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-center md:text-left">
-            <h2 className="text-2xl font-semibold text-[#8e2d75]">Join With Us</h2>
-            <p className="text-gray-600 text-m mt-1">
+            <h2 className="text-2xl font-semibold text-[#F5F5F5]">Join With Us</h2>
+            <p className="text-[#F5F5F5] text-m mt-1">
               A Complete Interio Solution
             </p>
           </div>
@@ -27,8 +27,8 @@ const Footer = () => {
                 Submit
               </button>
             </form>
-            <p className="text-xs text-gray-500 mt-2">
-              We care about your data in our <a href="#" className="text-[#8e2d75] underline">privacy policy</a>
+            <p className="text-xs text-[#F5F5F5] mt-2">
+              We care about your data in our <a href="#" className="text-[#f9f9f9] underline">privacy policy</a>
             </p>
           </div>
         </div>
@@ -38,7 +38,7 @@ const Footer = () => {
             <Image src="/assests/logo_slogan.jpg" width={100} height={100} alt="Logo" />
           </div>
 
-          <div className="mt-2 flex justify-center space-x-4 text-gray-600">
+          <div className="mt-2 flex justify-center space-x-4 text-[#F5F5F5]">
             <a href="/Home" className="hover:text-[#8e2d75]">Home</a>
             <a href="/Services" className="hover:text-[#8e2d75]">Services</a>
             <a href="/Portfolio" className="hover:text-[#8e2d75]">Portfolio</a>
@@ -47,20 +47,20 @@ const Footer = () => {
           </div>
 
           <div className="flex space-x-4 mt-6 md:mt-0">
-            <a href="https://www.facebook.com/profile.php?id=61555856837163" className="border border-[#8e2d75] rounded-full p-2 bg-[#8e2d75] text-white hover:text-gray-200">
+            <a href="https://www.facebook.com/profile.php?id=61555856837163" className="border border-[#8e2d75] rounded-full p-2 bg-[#f5f5f5] text-[#6b1b55] hover:text-gray-200">
               <Facebook />
             </a>
-            <a href="#" className="border border-[#8e2d75] rounded-full p-2 bg-[#8e2d75] text-white hover:text-gray-200">
+            <a href="#" className="border border-[#8e2d75] rounded-full p-2 bg-[#f5f5f5] text-[#6b1b55] hover:text-gray-200">
               <Instagram />
             </a>
-            <a href="#" className="border border-[#8e2d75] rounded-full p-2 bg-[#8e2d75] text-white hover:text-gray-200">
+            <a href="#" className="border border-[#8e2d75] rounded-full p-2 bg-[#f5f5f5] text-[#6b1b55] hover:text-gray-200">
               <Phone />
             </a>
           </div>
         </div>
-        <div className="border-t border-[#8e2d75] my-4"></div>
-        <div className="mt-8 text-center text-gray-500 text-sm">
-          Copyright &copy; 2025 Guras_interio. All rights reserved
+        <div className="border-t border-[#FFFFFF] my-4"></div>
+        <div className="mt-8 text-center text-[#F5F5F5] text-sm">
+          Copyright &copy; 2025 Guras Interio. All rights reserved
         </div>
       </div>
     </footer>

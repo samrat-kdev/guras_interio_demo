@@ -25,7 +25,7 @@ export default function CTA() {
             We’d love to hear from you! Whether you have questions, feedback, or collaboration opportunities, our team is here to help. Reach out to us via email, phone, or by filling out the form below, and we’ll get back to you as soon as possible.
           </p>
           {/* CTA Button */}
-          <Link2 href="/Contact" className="mt-8 px-6 py-3 bg-[#6b1b55] text-white text-lg font-medium uppercase rounded-md hover:bg-gray-800 transition-all">You Can Contact Us </Link2>
+          <Link2 href="/contact" className="mt-8 px-6 py-3 bg-[#6b1b55] text-white text-lg font-medium uppercase rounded-md hover:bg-gray-800 transition-all">You Can Contact Us </Link2>
 
         </div>
       </div>

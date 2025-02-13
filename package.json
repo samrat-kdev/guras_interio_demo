@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.15.1",
+    "sarathi-bot": "^1.0.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
