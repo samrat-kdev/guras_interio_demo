@@ -31,7 +31,7 @@ const Feedback: React.FC<FeedbackProps> = ({ inquiryOptions }) => {
 
   return (
     <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-center">
         Get In Touch
         <span className="block w-2/3 sm:w-1/2 md:w-1/3 h-1.5 bg-[#8e2d75] mt-2 mx-auto"></span>
       </h1>

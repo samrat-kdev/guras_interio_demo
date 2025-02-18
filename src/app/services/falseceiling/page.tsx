@@ -4,6 +4,7 @@ import FalseCeilingHero from '@/components/Hero/FalseCeilingHero'
 import FalseCeiling from '@/components/ServicesComp/FalseCeiling'
 import Footer from '@/components/Footer'
 import Slider from '@/components/ServicesComp/Slider'
+import Pic from '@/components/Pic'
 
 const page = () => {
   return (
@@ -11,7 +12,7 @@ const page = () => {
       <Header />
       <FalseCeilingHero />
       <Slider />
-      <FalseCeiling />
+      <Pic />
       <Footer />
     </>
   )

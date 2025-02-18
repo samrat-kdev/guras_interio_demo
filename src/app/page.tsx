@@ -1,4 +1,5 @@
 'use client'
+
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import HomeHero from "@/components/Hero/Homehero"
@@ -18,23 +19,21 @@ export default function Home() {
       <Testimonial />
       <HomeBan2 />
 
-      <main className=" flex flex-col items-center justify-center">
+      <main className="flex flex-col items-center justify-center px-4 md:px-8">
 
-        <section className="my-8 p-11">
-          <h2 className="text-4xl font-light text-[#6b1b55] text-center mb-12">Our Work</h2>
-          <p className="text-center align-middle mt-2 text-m">Let us transform your space into something truly remarkable—where comfort, beauty, and innovation come together seamlessly.</p>
+        {/* OUR WORK Section */}
+        <section className="my-8 max-w-screen-lg text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#6b1b55] mb-4">
+            OUR WORK
+          </h2>
+          <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+            Let us transform your space into something truly remarkable—where comfort, beauty, and innovation come together seamlessly.
+          </p>
           <Carousel />
-
         </section>
+
         <HomeBan3 />
       </main>
-
-      <div>
-
-      </div>
-
-
-
 
       <Footer />
     </>

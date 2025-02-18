@@ -20,8 +20,9 @@ const Testimonial = () => {
   return (
     <section
       ref={ref}
-      className="relative w-full h-[50vh] flex items-center justify-center text-white text-center px-4 sm:px-12 overflow-hidden"
+      className="relative w-full min-h-[60vh] flex items-center justify-center text-white text-center px-4 sm:px-12 overflow-hidden"
     >
+
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
@@ -46,7 +47,7 @@ const Testimonial = () => {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <motion.p
-          className="text-sm uppercase tracking-wide font-bold text-[#8e2d75] mb-4"
+          className="text-xl bg-[#8e2d75] uppercase tracking-wide font-bold text-[#f5f5f5] border-b border-[#8e2d75] rounded-lg mb-4"
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 },

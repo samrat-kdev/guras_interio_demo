@@ -33,7 +33,7 @@ export default function Contact() {
         </div>
         <Map />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 ">
           <div>
             <form className="space-y-4">
               <Question inquiryOptions={inquiryOptions} />
