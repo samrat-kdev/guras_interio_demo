@@ -44,7 +44,7 @@ const HomeHero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
           >
-            Closets
+            Closet
           </motion.span>
         </div>
 

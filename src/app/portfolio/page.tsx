@@ -5,9 +5,10 @@ import PortfolioHero from "@/components/Hero/PortfolioHero";
 import Footer from "@/components/Footer";
 import PortfolioComp from "@/components/Portfolio/PortfolioComp";
 import PortGallery from "@/components/Portfolio/PortGallery";
-import PhotoBooth from "@/components/AboutComp/PhotoBooth";
+
 import PortfolioComp2 from "@/components/Portfolio/PortfolioComp2";
 import PortfolioComp3 from "@/components/Portfolio/PortfolioComp3";
+
 
 export default function Portfolio() {
   return (
@@ -42,6 +43,7 @@ export default function Portfolio() {
       </div>
 
       <PortGallery />
+
 
       <Footer />
     </>

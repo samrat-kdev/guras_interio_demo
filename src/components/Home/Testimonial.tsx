@@ -37,7 +37,7 @@ const Testimonial = () => {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 max-w-4xl mx-auto"
+        className="relative z-2 max-w-4xl mx-auto"
         initial="hidden"
         animate={controls}
         variants={{

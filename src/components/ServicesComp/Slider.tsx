@@ -38,33 +38,53 @@ export default function Slider() {
             our expert virtual interior designers have created.
           </p>
         </div>
-        <div className="w-full relative" onMouseUp={handleMouseUp} onTouchEnd={handleTouchEnd}>
+        <div
+          className="w-full relative select-none"
+          onMouseUp={handleMouseUp}
+          onTouchEnd={handleTouchEnd}
+          style={{ userSelect: "none" }} // Prevents selection
+        >
           <div
-            className="relative w-full max-w-[900px] h-auto aspect-[16/9] m-auto overflow-hidden"
+            className="relative w-full max-w-[900px] h-auto aspect-[16/9] m-auto overflow-hidden select-none"
             onMouseMove={handleMouseMove}
             onMouseDown={handleMouseDown}
             onTouchMove={handleTouchMove}
             onTouchStart={handleTouchStart}
           >
             {/* After Image */}
-            <Image alt="after" fill priority src="/assests/ModularKitchen.jpg" className="object-cover" />
+            <Image
+              alt="after"
+              fill
+              priority
+              src="/assests/ModularKitchen.jpg"
+              className="object-cover pointer-events-none"
+            />
             <div className="absolute top-0 right-0 m-4 flex items-center justify-center bg-black bg-opacity-30 text-white text-2xl font-bold px-4 py-2">
               After
             </div>
 
             {/* Before Image */}
             <div
-              className="absolute top-0 left-0 right-0 w-full h-full overflow-hidden select-none"
+              className="absolute top-0 left-0 right-0 w-full h-full overflow-hidden"
               style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
-              <Image alt="before" fill priority src="/assests/beforemdk.jpg" className="object-cover" />
+              <Image
+                alt="before"
+                fill
+                priority
+                src="/assests/beforemdk.jpg"
+                className="object-cover pointer-events-none"
+              />
               <div className="absolute top-0 left-0 m-4 flex items-center justify-center bg-black bg-opacity-30 text-white text-2xl font-bold px-4 py-2">
                 Before
               </div>
             </div>
 
             {/* Slider Line & Circle */}
-            <div className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize" style={{ left: `calc(${sliderPosition}% - 1px)` }}>
+            <div
+              className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize"
+              style={{ left: `calc(${sliderPosition}% - 1px)` }}
+            >
               <div className="bg-white absolute rounded-full h-5 w-5 -left-2 top-[calc(50%-10px)] border-2 border-gray-500 shadow-lg"></div>
             </div>
           </div>
