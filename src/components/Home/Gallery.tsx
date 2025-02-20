@@ -8,7 +8,7 @@ const images = [
   '/assests/HomeAbt/Abt7.JPG', '/assests/HomeAbt/Abt8.JPG', '/assests/HomeAbt/Abt9.JPG',
   '/assests/HomeAbt/Abt10.JPG', '/assests/HomeAbt/Abt11.JPG', '/assests/HomeAbt/Abt12.JPG',
   '/assests/HomeAbt/Abt13.JPG', '/assests/HomeAbt/Abt14.JPG', '/assests/HomeAbt/Abt15.JPG',
-  // '/assests/HomeAbt/Abt16.JPG', '/assests/HomeAbt/Abt17.JPG', '/assests/HomeAbt/Abt18.JPG'
+  '/assests/HomeAbt/Abt16.JPG', '/assests/HomeAbt/Abt17.JPG', '/assests/HomeAbt/Abt18.JPG'
 ];
 
 export default function MasonryGrid() {

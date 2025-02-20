@@ -6,6 +6,7 @@ const images = [
   ["/assests/HomeAbt/Abt1.JPG", "/assests/HomeAbt/Abt1.JPG", "/assests/HomeAbt/Abt1.JPG"],
   ["/assests/HomeAbt/Abt1.JPG", "/assests/HomeAbt/Abt1.JPG", "/assests/HomeAbt/Abt1.JPG"],
   ["/assests/HomeAbt/Abt1.JPG", "/assests/HomeAbt/Abt1.JPG", "/assests/HomeAbt/Abt1.JPG"],
+  ["/assests/HomeAbt/Abt1.JPG", "/assests/HomeAbt/Abt1.JPG", "/assests/HomeAbt/Abt1.JPG"],
 ];
 
 export default function Carousel() {

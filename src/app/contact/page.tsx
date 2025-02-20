@@ -9,6 +9,7 @@ import Footer from "@/components/Footer"
 import ContactHero from "@/components/Hero/ContactHero"
 import Question from "@/components/Contact/Question"
 
+
 const inquiryOptions = [
   { value: "general", label: "General Inquiry" },
   { value: "support", label: "Support" },

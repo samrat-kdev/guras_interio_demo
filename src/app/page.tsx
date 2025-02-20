@@ -4,10 +4,10 @@ import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import HomeHero from "@/components/Hero/Homehero"
 import Carousel from "@/components/Home/Carousel"
-import Gallery from "@/components/Home/Gallery"
+
 import HomeBan1 from "@/components/Home/HomeBan1"
-import HomeBan2 from "@/components/Home/HomeBan2"
-import HomeBan3 from "@/components/Home/HomeBan3"
+import HomeBan2 from "@/components/Home/HomeServices"
+import HomeBan3 from "@/components/Home/HomeCTA"
 import Testimonial from "@/components/Home/Testimonial"
 
 export default function Home() {
