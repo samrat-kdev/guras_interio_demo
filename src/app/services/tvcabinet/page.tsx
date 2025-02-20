@@ -1,21 +1,29 @@
-import Footer from '@/components/Footer'
-import React from 'react'
+import Slider from "@/components/ServicesComp/Slider";
+import Collage from "@/components/Pic";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import TVcabinethero from "@/components/Hero/TVcabinethero";
 
-import Header from '@/components/Header'
-import TVCabinetHero from '@/components/Hero/TVcabinethero'
-import Slider from '@/components/ServicesComp/Slider'
-import Pic from '@/components/Pic'
+const ClosetPage = () => {
+  const collageImages = [
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+    "/assests/b.jpg",
 
-const page = () => {
+  ];
+
   return (
-    <>
+    <div>
       <Header />
-      <TVCabinetHero />
-      <Slider />
-      <Pic />
+      <TVcabinethero />
+      <Slider beforeImage="/assests/beforemdk.jpg" afterImage="/assests/closetpic.jpg" />
+      <Collage images={collageImages} />
       <Footer />
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default page
+export default ClosetPage;

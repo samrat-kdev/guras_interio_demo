@@ -1,21 +1,29 @@
-'use client'
-import Head from 'next/head'
-import React from 'react'
-import Header from '@/components/Header'
-import ModularKitchenHero from '@/components/Hero/ModularKitchenHero'
-import Footer from '@/components/Footer'
-import Slider from '@/components/ServicesComp/Slider'
-import Pic from '@/components/Pic'
-const page = () => {
+import Slider from "@/components/ServicesComp/Slider";
+import Collage from "@/components/Pic";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ModularKitchenHero from "@/components/Hero/ModularKitchenHero";
+
+const ClosetPage = () => {
+  const collageImages = [
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+    "/assests/b.jpg",
+
+  ];
+
   return (
-    <>
+    <div>
       <Header />
       <ModularKitchenHero />
-      <Slider />
-      <Pic />
+      <Slider beforeImage="/assests/beforemdk.jpg" afterImage="/assests/closetpic.jpg" />
+      <Collage images={collageImages} />
       <Footer />
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default page
+export default ClosetPage;

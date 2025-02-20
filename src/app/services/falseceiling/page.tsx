@@ -1,21 +1,29 @@
-import React from 'react'
-import Header from '@/components/Header'
-import FalseCeilingHero from '@/components/Hero/FalseCeilingHero'
-import FalseCeiling from '@/components/ServicesComp/FalseCeiling'
-import Footer from '@/components/Footer'
-import Slider from '@/components/ServicesComp/Slider'
-import Pic from '@/components/Pic'
+import Slider from "@/components/ServicesComp/Slider";
+import Collage from "@/components/Pic";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import FalseCeilingHero from "@/components/Hero/FalseCeilingHero";
 
-const page = () => {
+const ClosetPage = () => {
+  const collageImages = [
+    "/assests/woo.jpg",
+    "/assests/woo.jpg",
+    "/assests/woo.jpg",
+    "/assests/woo.jpg",
+    "/assests/woo.jpg",
+    "/assests/woo.jpg",
+
+  ];
+
   return (
-    <>
+    <div>
       <Header />
       <FalseCeilingHero />
-      <Slider />
-      <Pic />
+      <Slider beforeImage="/assests/beforemdk.jpg" afterImage="/assests/closetpic.jpg" />
+      <Collage images={collageImages} />
       <Footer />
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default page
+export default ClosetPage;
