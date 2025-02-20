@@ -571,163 +571,416 @@
 //   });
 
 
-import { PrismaClient, Role, ProjectType, ContactStatus } from "@prisma/client";
-import bcrypt from "bcryptjs";
+// import { PrismaClient, Role, ProjectType, ContactStatus } from "@prisma/client";
+// import bcrypt from "bcryptjs";
+
+// const prisma = new PrismaClient();
+
+// async function hashPassword(password:string) {
+//   return await bcrypt.hash(password, 10);
+// }
+
+// async function main() {
+//   // Hash passwords
+//   const adminHashedPassword = await hashPassword("securepassword");
+//   const superAdminHashedPassword = await hashPassword("securepassword");
+
+//   console.log("Hashed admin password:", adminHashedPassword);
+//   console.log("Hashed super admin password:", superAdminHashedPassword);
+
+//   // Create Users
+//   const adminUser = await prisma.user.upsert({
+//     where: { email: "admin@gurasinterio.com" },
+//     update: {},
+//     create: {
+//       email: "admin@gurasinterio.com",
+//       password: adminHashedPassword,
+//       name: "Admin User",
+//       role: Role.ADMIN,
+//     },
+//   });
+
+//   console.log("Admin user created:", adminUser);
+
+//   const superAdminUser = await prisma.user.upsert({
+//     where: { email: "superadmin@gurasinterio.com" },
+//     update: {},
+//     create: {
+//       email: "superadmin@gurasinterio.com",
+//       password: superAdminHashedPassword,
+//       name: "Super Admin User",
+//       role: Role.SUPER_ADMIN,
+//     },
+//   });
+
+//   console.log("Super Admin user created:", superAdminUser);
+
+//   // Create Categories
+//   const residentialCategory = await prisma.category.upsert({
+//     where: { name: "Residential" },
+//     update: {},
+//     create: {
+//       name: "Residential",
+//       description: "Projects related to home and living spaces."
+//     },
+//   });
+
+//   const commercialCategory = await prisma.category.upsert({
+//     where: { name: "Commercial" },
+//     update: {},
+//     create: {
+//       name: "Commercial",
+//       description: "Projects for commercial buildings, shops, and malls."
+//     },
+//   });
+
+//   const officeCategory = await prisma.category.upsert({
+//     where: { name: "Office" },
+//     update: {},
+//     create: {
+//       name: "Office",
+//       description: "Office design and workspace solutions."
+//     },
+//   });
+
+//   // Create Services
+//   await prisma.service.createMany({
+//     data: [
+//       {
+//         title: "Interior Design",
+//         description: "Professional interior design services for residential and commercial spaces.",
+//         features: ["Custom furniture", "Space planning", "3D visualization"],
+//         pricing: { basic: 500, premium: 2000 },
+//         categoryId: residentialCategory.id,
+//       },
+//       {
+//         title: "Renovation Services",
+//         description: "Full home and office renovation services with expert consultation.",
+//         features: ["Wall painting", "Flooring solutions", "Electrical works"],
+//         pricing: { standard: 1000, deluxe: 5000 },
+//         categoryId: commercialCategory.id,
+//       },
+//     ],
+//     skipDuplicates: true,
+//   });
+
+//  // Create Projects
+//  await prisma.project.createMany({
+//   data: [
+//     {
+//       id:"jgjjjgjggfghfh",
+//       projectcode: "PRJ001",
+//       title: "Modern Living Space",
+//       description: "A complete redesign of a modern residential apartment.",
+//       location: "Kathmandu, Nepal",
+//       client: "Mr. Sharma",
+//       completionDate: new Date("2024-05-10"),
+//       categoryId: residentialCategory.id,
+//       featured: true,
+//       isActive: true,
+//     },
+//     {
+//       id : "gfghfhfyhjfhyf",
+//       projectcode: "PRJ002",
+//       title: "Corporate Office Redesign",
+//       description: "A complete overhaul of a modern office workspace.",
+//       location: "Lalitpur, Nepal",
+//       client: "Tech Solutions Pvt. Ltd.",
+//       completionDate: new Date("2023-12-15"),
+//       categoryId: officeCategory.id,
+//       featured: false,
+//       isActive: true,
+//     },
+//   ],
+//   skipDuplicates: true,
+// });
+
+// console.log("Projects seeded successfully.");
+
+// // Create Project Images
+// await prisma.projectImage.createMany({
+//   data: [
+//     {
+//       url: "https://example.com/project1.jpg",
+//       alt: "Modern Living Space",
+//       projectId: "jgjjjgjggfghfh", // Reference to project id
+//       order: 1,
+//     },
+//     {
+//       url: "https://example.com/project2.jpg",
+//       alt: "Corporate Office Redesign",
+//       projectId: "gfghfhfyhjfhyf", // Reference to project id
+//       order: 1,
+//     },
+//   ],
+//   skipDuplicates: true,
+// });
+
+// console.log("Project images seeded successfully.");
+
+
+// // Create Service Images
+// await prisma.serviceImage.createMany({
+//   data: [
+//     {
+//       url: "https://example.com/service1.jpg",
+//       alt: "Interior Design Service",
+//       serviceId: "1", // Adjust service ID accordingly
+//     },
+//     {
+//       url: "https://example.com/service2.jpg",
+//       alt: "Renovation Service",
+//       serviceId: "2", // Adjust service ID accordingly
+//     },
+//   ],
+//   skipDuplicates: true,
+// });
+
+// console.log("Service images seeded successfully.");
+
+//   // Create Contact Entries
+//   await prisma.contact.createMany({
+//     data: [
+//       {
+//         name: "John Doe",
+//         email: "johndoe@example.com",
+//         phone: "9841234567",
+//         message: "Looking for home renovation services.",
+//         preferredService: "Renovation Services",
+//         budget: 3000.00,
+//         projectType: ProjectType.RESIDENTIAL,
+//         timeline: "3 months",
+//         status: ContactStatus.NEW,
+//       },
+//       {
+//         name: "Jane Smith",
+//         email: "janesmith@example.com",
+//         phone: "9807654321",
+//         message: "Need interior design for my new office.",
+//         preferredService: "Interior Design",
+//         budget: 5000.00,
+//         projectType: ProjectType.OFFICE,
+//         timeline: "2 months",
+//         status: ContactStatus.IN_PROGRESS,
+//       },
+//     ],
+//     skipDuplicates: true,
+//   });
+
+//   console.log("Seed data inserted successfully!");
+// }
+
+// main()
+//   .catch((e) => {
+//     console.error(e);
+//     process.exit(1);
+//   })
+//   .finally(async () => {
+//     await prisma.$disconnect();
+//   });
+
+
+import { PrismaClient, Role, ProjectType, ContactStatus } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
-async function hashPassword(password:string) {
-  return await bcrypt.hash(password, 10);
+async function hashPassword(password: string) {
+ return await bcrypt.hash(password, 10);
 }
 
 async function main() {
-  // Hash passwords
-  const adminHashedPassword = await hashPassword("securepassword");
-  const superAdminHashedPassword = await hashPassword("securepassword");
+ // Hash passwords
+ const adminHashedPassword = await hashPassword('securepassword');
+ const superAdminHashedPassword = await hashPassword('securepassword');
 
-  console.log("Hashed admin password:", adminHashedPassword);
-  console.log("Hashed super admin password:", superAdminHashedPassword);
+ // Create Users
+ const adminUser = await prisma.user.upsert({
+   where: { email: 'admin@gurasinterio.com' },
+   update: {},
+   create: {
+     email: 'admin@gurasinterio.com',
+     password: adminHashedPassword,
+     name: 'Admin User',
+     role: Role.ADMIN,
+   },
+ });
+ console.log("Admin user created:", adminUser);
 
-  // Create Users
-  const adminUser = await prisma.user.upsert({
-    where: { email: "admin@gurasinterio.com" },
-    update: {},
-    create: {
-      email: "admin@gurasinterio.com",
-      password: adminHashedPassword,
-      name: "Admin User",
-      role: Role.ADMIN,
-    },
-  });
+ const superAdminUser = await prisma.user.upsert({
+   where: { email: 'superadmin@gurasinterio.com' },
+   update: {},
+   create: {
+     email: 'superadmin@gurasinterio.com',
+     password: superAdminHashedPassword,
+     name: 'Super Admin User',
+     role: Role.SUPER_ADMIN,
+   },
+ });
 
-  console.log("Admin user created:", adminUser);
+ console.log("Super Admin user created:", superAdminUser);
 
-  const superAdminUser = await prisma.user.upsert({
-    where: { email: "superadmin@gurasinterio.com" },
-    update: {},
-    create: {
-      email: "superadmin@gurasinterio.com",
-      password: superAdminHashedPassword,
-      name: "Super Admin User",
-      role: Role.SUPER_ADMIN,
-    },
-  });
+ // Create Categories
+ const residentialCategory = await prisma.category.upsert({
+   where: { name: 'Residential' },
+   update: {},
+   create: {
+     name: 'Residential',
+     description: 'Projects related to home and living spaces.',
+   },
+ });
 
-  console.log("Super Admin user created:", superAdminUser);
+ const commercialCategory = await prisma.category.upsert({
+   where: { name: 'Commercial' },
+   update: {},
+   create: {
+     name: 'Commercial',
+     description: 'Projects for commercial buildings, shops, and malls.',
+   },
+ });
 
-  // Create Categories
-  const residentialCategory = await prisma.category.upsert({
-    where: { name: "Residential" },
-    update: {},
-    create: {
-      name: "Residential",
-      description: "Projects related to home and living spaces."
-    },
-  });
+ const officeCategory = await prisma.category.upsert({
+   where: { name: 'Office' },
+   update: {},
+   create: {
+     name: 'Office',
+     description: 'Office design and workspace solutions.',
+   },
+ });
 
-  const commercialCategory = await prisma.category.upsert({
-    where: { name: "Commercial" },
-    update: {},
-    create: {
-      name: "Commercial",
-      description: "Projects for commercial buildings, shops, and malls."
-    },
-  });
+ // Create Services
+ const interiorDesignService = await prisma.service.upsert({
+   where: { servicecode: 'INTD001' },
+   update: {},
+   create: {
+     servicecode: 'INTD001',
+     title: 'Interior Design',
+     description: 'Professional interior design services for residential and commercial spaces.',
+     features: JSON.stringify(['Custom furniture', 'Space planning', '3D visualization']),
+     pricing: JSON.stringify({ basic: 500, premium: 2000 }),
+     categoryId: residentialCategory.id,
+   },
+ });
 
-  const officeCategory = await prisma.category.upsert({
-    where: { name: "Office" },
-    update: {},
-    create: {
-      name: "Office",
-      description: "Office design and workspace solutions."
-    },
-  });
+ const renovationService = await prisma.service.upsert({
+   where: { servicecode: 'RENOV001' },
+   update: {},
+   create: {
+     servicecode: 'RENOV001',
+     title: 'Renovation Services',
+     description: 'Full home and office renovation services with expert consultation.',
+     features: JSON.stringify(['Wall painting', 'Flooring solutions', 'Electrical works']),
+     pricing: JSON.stringify({ standard: 1000, deluxe: 5000 }),
+     categoryId: commercialCategory.id,
+   },
+ });
 
-  // Create Services
-  await prisma.service.createMany({
-    data: [
-      {
-        title: "Interior Design",
-        description: "Professional interior design services for residential and commercial spaces.",
-        features: ["Custom furniture", "Space planning", "3D visualization"],
-        pricing: { basic: 500, premium: 2000 },
-        categoryId: residentialCategory.id,
-      },
-      {
-        title: "Renovation Services",
-        description: "Full home and office renovation services with expert consultation.",
-        features: ["Wall painting", "Flooring solutions", "Electrical works"],
-        pricing: { standard: 1000, deluxe: 5000 },
-        categoryId: commercialCategory.id,
-      },
-    ],
-    skipDuplicates: true,
-  });
+ // Create Projects
+ const modernLivingSpace = await prisma.project.upsert({
+   where: { projectcode: 'PRJ001' },
+   update: {},
+   create: {
+     projectcode: 'PRJ001',
+     title: 'Modern Living Space',
+     description: 'A complete redesign of a modern residential apartment.',
+     location: 'Kathmandu, Nepal',
+     client: 'Mr. Sharma',
+     completionDate: new Date('2024-05-10'),
+     categoryId: residentialCategory.id,
+     featured: true,
+     isActive: true,
+   },
+ });
 
-  // Create Projects
-  await prisma.project.createMany({
-    data: [
-      {
-        title: "Modern Living Space",
-        description: "A complete redesign of a modern residential apartment.",
-        location: "Kathmandu, Nepal",
-        client: "Mr. Sharma",
-        completionDate: new Date("2024-05-10"),
-        categoryId: residentialCategory.id,
-        featured: true,
-        isActive: true,
-      },
-      {
-        title: "Corporate Office Redesign",
-        description: "A complete overhaul of a modern office workspace.",
-        location: "Lalitpur, Nepal",
-        client: "Tech Solutions Pvt. Ltd.",
-        completionDate: new Date("2023-12-15"),
-        categoryId: officeCategory.id,
-        featured: false,
-        isActive: true,
-      },
-    ],
-    skipDuplicates: true,
-  });
+ const corporateOfficeRedesign = await prisma.project.upsert({
+   where: { projectcode: 'PRJ002' },
+   update: {},
+   create: {
+     projectcode: 'PRJ002',
+     title: 'Corporate Office Redesign',
+     description: 'A complete overhaul of a modern office workspace.',
+     location: 'Lalitpur, Nepal',
+     client: 'Tech Solutions Pvt. Ltd.',
+     completionDate: new Date('2023-12-15'),
+     categoryId: officeCategory.id,
+     featured: false,
+     isActive: true,
+   },
+ });
 
-  // Create Contact Entries
-  await prisma.contact.createMany({
-    data: [
-      {
-        name: "John Doe",
-        email: "johndoe@example.com",
-        phone: "9841234567",
-        message: "Looking for home renovation services.",
-        preferredService: "Renovation Services",
-        budget: 3000.00,
-        projectType: ProjectType.RESIDENTIAL,
-        timeline: "3 months",
-        status: ContactStatus.NEW,
-      },
-      {
-        name: "Jane Smith",
-        email: "janesmith@example.com",
-        phone: "9807654321",
-        message: "Need interior design for my new office.",
-        preferredService: "Interior Design",
-        budget: 5000.00,
-        projectType: ProjectType.OFFICE,
-        timeline: "2 months",
-        status: ContactStatus.IN_PROGRESS,
-      },
-    ],
-    skipDuplicates: true,
-  });
+ // Create Project Images
+ await prisma.projectImage.createMany({
+   data: [
+     {
+       url: 'https://example.com/project1.jpg',
+       alt: 'Modern Living Space',
+       projectId: modernLivingSpace.id,
+       order: 1,
+     },
+     {
+       url: 'https://example.com/project2.jpg',
+       alt: 'Corporate Office Redesign',
+       projectId: corporateOfficeRedesign.id,
+       order: 1,
+     },
+   ],
+   skipDuplicates: true,
+ });
 
-  console.log("Seed data inserted successfully!");
+ // Create Service Images
+ await prisma.serviceImage.createMany({
+   data: [
+     {
+       url: 'https://example.com/service1.jpg',
+       alt: 'Interior Design Service',
+       serviceId: interiorDesignService.id,
+     },
+     {
+       url: 'https://example.com/service2.jpg',
+       alt: 'Renovation Service',
+       serviceId: renovationService.id,
+     },
+   ],
+   skipDuplicates: true,
+ });
+
+ // Create Contact Entries
+ await prisma.contact.createMany({
+   data: [
+     {
+       name: 'John Doe',
+       email: 'johndoe@example.com',
+       phone: '9841234567',
+       message: 'Looking for home renovation services.',
+       preferredService: 'Renovation Services',
+       budget: 3000.00,
+       projectType: ProjectType.RESIDENTIAL,
+       timeline: '3 months',
+       status: ContactStatus.NEW,
+     },
+     {
+       name: 'Jane Smith',
+       email: 'janesmith@example.com',
+       phone: '9807654321',
+       message: 'Need interior design for my new office.',
+       preferredService: 'Interior Design',
+       budget: 5000.00,
+       projectType: ProjectType.OFFICE,
+       timeline: '2 months',
+       status: ContactStatus.IN_PROGRESS,
+     },
+   ],
+   skipDuplicates: true,
+ });
+
+ console.log('Seed data inserted successfully!');
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+ .catch((e) => {
+   console.error(e);
+   process.exit(1);
+ })
+ .finally(async () => {
+   await prisma.$disconnect();
+ });

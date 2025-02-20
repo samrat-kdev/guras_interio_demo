@@ -40,11 +40,12 @@ datasource db {
  // Services offered by GurasInterio
  model Service {
   id          String   @id @default(cuid())
+  servicecode String @unique
   title       String
   description String   @db.Text
   features    Json?    // Stores array of features
   pricing     Json?    // Stores pricing information
-  imageUrl    String?
+  serviceImages ServiceImage[]
   categoryId  String
   category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   isActive    Boolean  @default(true)
@@ -52,8 +53,19 @@ datasource db {
   updatedAt   DateTime @updatedAt
 }
 
+model ServiceImage{
+  id String @id @default(cuid())
+  url String
+  alt String?
+  serviceId String
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Project {
   id          String   @id @default(cuid())
+  projectcode String @unique 
   title       String
   description String   @db.Text
   location    String?
@@ -66,6 +78,7 @@ model Project {
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
 }
 
  // Project images
