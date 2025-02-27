@@ -61,7 +61,7 @@ export async function DELETE(
     });
     return NextResponse.json({ message: 'Service deleted successfully' });
   } catch (error) {
-    console.error('Error deleting service:', error);
+    console.error('Error deleting service:', error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Create Next App",
+  title: "Admin Dashboard",
   description: "Admin Dashboard",
 };
 
@@ -25,7 +28,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+      <SidebarProvider>
+          <div className="flex h-screen">
+            <AppSidebar />
+            <div className="flex-1 flex flex-col">
+              <Navbar />
+              <main className="flex-1 p-5 overflow-auto">
+                {children}
+              </main>
+            </div>
+          </div>
+        </SidebarProvider>
       </body>
     </html>
   );

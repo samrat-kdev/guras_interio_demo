@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import { uploadImageToCloudinary } from "@/lib/cloudinary";
 import { generateUniqueCode } from "@/utils/uuid";
 
+
 // Utility function to check if a service exists based on title, description, and categoryId
 async function isServiceExist(title: string, description: string, categoryId: string) {
   const existingService = await prisma.service.findFirst({
@@ -20,7 +21,9 @@ async function isServiceExist(title: string, description: string, categoryId: st
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    const image = formData.get("image") as File;
+    console.log("formData:",formData);
+    const image = formData.get("serviceImages") as File;
+    console.log("image:",image);
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
     const features = formData.get("features") ? JSON.parse(formData.get("features") as string) : null;

@@ -16,7 +16,11 @@ cloudinary.config({
  */
 
 
-export async function uploadImageToCloudinary(file: File): Promise<UploadApiResponse> {
+export async function uploadImageToCloudinary(file: File): Promise<UploadApiResponse | null> {
+    if (!file) {
+        console.error("No file provided for upload");
+        return null; // Return null if no file is provided
+      }
     
   try {
     const arrayBuffer = await file.arrayBuffer();
@@ -33,6 +37,7 @@ export async function uploadImageToCloudinary(file: File): Promise<UploadApiResp
             reject(error);
           } else {
             resolve(result); // Resolving with the result when upload is successful
+            console.log("Upload result:", result);
           }
         }
       ).end(buffer);

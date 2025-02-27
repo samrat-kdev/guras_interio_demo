@@ -10,7 +10,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+
 
 // Menu items.
 const items = [

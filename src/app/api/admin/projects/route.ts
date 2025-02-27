@@ -19,7 +19,9 @@ async function isProjectExist(title: string, description: string, categoryId: st
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    const image = formData.get("image") as File;
+    console.log("formData:",formData);
+    const image = formData.get("images") as File;
+    console.log("image:",image);
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
     const location = formData.get("location") as string | null;
@@ -49,6 +51,11 @@ export async function POST(req: NextRequest) {
         { error: "A project with the same title, description, and category already exists" },
         { status: 400 }
       );
+    }
+
+     // Ensure the image is provided
+     if (!image) {
+      return NextResponse.json({ error: "No image file selected" }, { status: 400 });
     }
 
     // Upload image to Cloudinary

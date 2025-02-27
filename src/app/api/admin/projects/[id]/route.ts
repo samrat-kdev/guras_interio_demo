@@ -47,7 +47,7 @@ export async function DELETE(
     { params }: { params: { id: string } }
   ) {
     try {
-      const { id } = params;
+      const { id } = await params;
       await prisma.project.delete({
         where: { id },
       });
