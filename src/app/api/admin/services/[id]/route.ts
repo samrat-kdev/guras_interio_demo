@@ -33,13 +33,13 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const data = await req.json();
     const service = await prisma.service.update({
       where: { id },
       data,
     });
-    return NextResponse.json(service);
+    return NextResponse.json({message: 'Service updated successfully', service}, { status: 201 });
   } catch (error) {
     console.error('Error updating service:', error);
     return NextResponse.json(
@@ -59,7 +59,7 @@ export async function DELETE(
     await prisma.service.delete({
       where: { id },
     });
-    return NextResponse.json({ message: 'Service deleted successfully' });
+    return NextResponse.json({ message: 'Service deleted successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error deleting service:', error instanceof Error ? error.message : error);
     return NextResponse.json(

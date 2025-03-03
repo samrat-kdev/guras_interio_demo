@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
     try{
         const projects = await prisma.project.findMany({
             include: {
-                category: true,
+                service: true,
                 images: true,
             },
         });
@@ -45,8 +45,7 @@ import prisma from "@/lib/prisma";
     {
         const categories = await prisma.category.findMany({
             include: {
-                projects: false,
-                services: false,
+                services: true,
             },
         });
         // return NextResponse.json(categories, { status: 200 });

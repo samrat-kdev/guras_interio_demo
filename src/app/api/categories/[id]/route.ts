@@ -27,33 +27,33 @@ export async function GET(
     }
   }
   
-  // Update a specific category by ID
-  export async function PUT(
-    req: NextRequest,
-    { params }: { params: { id: string } }
-  ) {
-    try {
-      const { id } = await params;
-      const categoryExist = await prisma.category.findUnique({
-        where: { id },
-      })
-      if (!categoryExist) {
-        return NextResponse.json({ error: 'Category not found' }, { status: 404 });
-      }
-      const data = await req.json();
-      const category = await prisma.category.update({
-        where: { id },
-        data,
-      });
-      return NextResponse.json({message: 'Category updated successfully', category}, { status: 201 });
-    } catch (error) {
-      console.error('Error updating category:', error);
-      return NextResponse.json(
-        { error: 'Internal Server Error' },
-        { status: 500 }
-      );
-    }
-  }
+  // // Update a specific category by ID
+  // export async function PUT(
+  //   req: NextRequest,
+  //   { params }: { params: { id: string } }
+  // ) {
+  //   try {
+  //     const { id } = await params;
+  //     const categoryExist = await prisma.category.findUnique({
+  //       where: { id },
+  //     })
+  //     if (!categoryExist) {
+  //       return NextResponse.json({ error: 'Category not found' }, { status: 404 });
+  //     }
+  //     const data = await req.json();
+  //     const category = await prisma.category.update({
+  //       where: { id },
+  //       data,
+  //     });
+  //     return NextResponse.json({message: 'Category updated successfully', category}, { status: 201 });
+  //   } catch (error) {
+  //     console.error('Error updating category:', error);
+  //     return NextResponse.json(
+  //       { error: 'Internal Server Error' },
+  //       { status: 500 }
+  //     );
+  //   }
+  // }
   
   // // app/api/admin/categories/[id]/route.ts
   // // Delete a specific category by ID
@@ -162,47 +162,47 @@ export async function GET(
 
 // app/api/admin/categories/[id]/route.ts
 
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  console.log('Request received for DELETE method');
+// export async function DELETE(
+//   req: NextRequest,
+//   { params }: { params: { id: string } }
+// ) {
+//   console.log('Request received for DELETE method');
   
-  // Await params to ensure it's properly resolved (for Next.js 13 app directory)
-  const { id } = await params;
-  if (!id) {
-    console.error('No category ID provided');
-    return NextResponse.json({ error: 'Category ID is required' }, { status: 400 });
-  }
+//   // Await params to ensure it's properly resolved (for Next.js 13 app directory)
+//   const { id } = await params;
+//   if (!id) {
+//     console.error('No category ID provided');
+//     return NextResponse.json({ error: 'Category ID is required' }, { status: 400 });
+//   }
 
-  console.log('Received category ID:', id);
+//   console.log('Received category ID:', id);
 
-  try {
-    // Log just before attempting deletion
-    console.log(`Attempting to delete category with ID: ${id}`);
+//   try {
+//     // Log just before attempting deletion
+//     console.log(`Attempting to delete category with ID: ${id}`);
     
-    // Attempting to delete the category
-    const category = await prisma.category.delete({
-      where: { id },
-    });
+//     // Attempting to delete the category
+//     const category = await prisma.category.delete({
+//       where: { id },
+//     });
 
-    console.log('Category deleted:', category);
+//     console.log('Category deleted:', category);
 
-    // Ensure proper object is returned
-    return NextResponse.json({ message: 'Category deleted successfully', deletedCategory: category });
-  } catch (error) {
-    // Check the type of the error before logging it
-    let errorMessage = 'Unknown error occurred';
-    if (error && error instanceof Error) {
-      errorMessage = error.message; // Extract message if it's a proper Error object
-    } else if (error && typeof error === 'object') {
-      errorMessage = JSON.stringify(error); // In case the error is an object but not an instance of Error
-    }
+//     // Ensure proper object is returned
+//     return NextResponse.json({ message: 'Category deleted successfully', deletedCategory: category });
+//   } catch (error) {
+//     // Check the type of the error before logging it
+//     let errorMessage = 'Unknown error occurred';
+//     if (error && error instanceof Error) {
+//       errorMessage = error.message; // Extract message if it's a proper Error object
+//     } else if (error && typeof error === 'object') {
+//       errorMessage = JSON.stringify(error); // In case the error is an object but not an instance of Error
+//     }
 
-    // Log the error message
-    console.error('Error deleting category:', errorMessage);
+//     // Log the error message
+//     console.error('Error deleting category:', errorMessage);
 
-    // Return error response with the message safely extracted
-    return NextResponse.json({ error: 'Internal Server Error', details: errorMessage }, { status: 500 });
-  }
-}
+//     // Return error response with the message safely extracted
+//     return NextResponse.json({ error: 'Internal Server Error', details: errorMessage }, { status: 500 });
+//   }
+// }

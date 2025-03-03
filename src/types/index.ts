@@ -68,9 +68,19 @@ export interface ProjectImage {
 }
 
 // Contact model
-type ProjectType = "RESIDENTIAL" | "COMMERCIAL" | "OFFICE" | "OTHER";
+// type ProjectType = "RESIDENTIAL" | "COMMERCIAL" | "OFFICE" | "OTHER";
 type ContactStatus = "NEW" | "IN_PROGRESS" | "CONTACTED" | "CONVERTED" | "CLOSED";
-
+export enum InquiryType {
+  GENERAL = "GENERAL",
+  SUPPORT = "SUPPORT",
+  OTHERS = "OTHERS",
+}
+enum ProjectType {
+  RESIDENTIAL = "RESIDENTIAL",
+  COMMERCIAL = "COMMERCIAL",
+  OFFICE = "OFFICE",
+  OTHERS = "OTHERS",
+}
 export interface Contact {
   id: string;
   name: string;
@@ -79,8 +89,9 @@ export interface Contact {
   message: string;
   preferredService?: string | null;
   budget?: Prisma.Decimal | null;
-  projectType?: ProjectType | null;
+  projectType?:  ProjectType | null;
   timeline?: string | null;
+  inquiryType?: InquiryType | null;
   status: ContactStatus;
   createdAt: Date;
   updatedAt: Date;

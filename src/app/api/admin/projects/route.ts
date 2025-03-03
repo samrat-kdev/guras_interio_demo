@@ -3,12 +3,12 @@ import prisma from "@/lib/prisma";
 import { uploadImageToCloudinary } from "@/lib/cloudinary";
 import { generateUniqueCode } from "@/utils/uuid";
 // Utility function to check if a project exists based on title, description, and categoryId
-async function isProjectExist(title: string, description: string, categoryId: string) {
+async function isProjectExist(title: string, description: string, serviceId: string) {
   const existingProject = await prisma.project.findFirst({
     where: {
       title: title,
       description: description,
-      categoryId: categoryId,
+      serviceId: serviceId,
       
     },
   });
@@ -27,14 +27,14 @@ export async function POST(req: NextRequest) {
     const location = formData.get("location") as string | null;
     const client = formData.get("client") as string | null;
     const completionDate = formData.get("completionDate") as Date | null;
-    const categoryId = formData.get("categoryId") as string;
+    const serviceId = formData.get("serviceId") as string;
     const featured = formData.get("featured") === "true";
     const isActive = formData.get("isActive") === "true";
 
     // Validate required fields
-    if (!title || !description || !categoryId) {
+    if (!title || !description || !serviceId) {
       return NextResponse.json(
-        { error: "Title, description, and categoryId are required" },
+        { error: "Title, description, and serviceId are required" },
         { status: 400 }
       );
     }
@@ -44,11 +44,11 @@ export async function POST(req: NextRequest) {
     console.log("Generated Project code:", projectCode);
 
     // Check if the project already exists based on title, description, and categoryId
-    const existingProject = await isProjectExist(title, description, categoryId);
+    const existingProject = await isProjectExist(title, description, serviceId);
 
     if (existingProject) {
       return NextResponse.json(
-        { error: "A project with the same title, description, and category already exists" },
+        { error: "A project with the same title, description, and service already exists" },
         { status: 400 }
       );
     }
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
         location: location || undefined,
         client: client || undefined,
         completionDate: completionDate ? new Date(completionDate) : undefined,
-        categoryId,
+        serviceId,
         featured,
         isActive,
         images: {
@@ -190,7 +190,7 @@ export async function GET() {
   try {
     const projects = await prisma.project.findMany({
       include: {
-        category: true,
+        service: true,
         images: true,
       },
     });

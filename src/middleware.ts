@@ -57,3 +57,52 @@
 // export const config = {
 //     matcher: ["/api/admin/:path*"],
 // };
+
+
+// src/middleware.ts
+import { NextRequest, NextResponse } from "next/server";
+import { jwtVerify, JWTPayload } from "jose";
+import { Role } from "@prisma/client";
+
+interface DecodedToken extends JWTPayload {
+    role: string;
+  }
+
+  export async function middleware(req: NextRequest) {
+    const token = req.cookies.get('token')?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
+  
+    try {
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      const { payload } = await jwtVerify(token, secret);
+  
+      // Define your restricted routes
+      const restrictedRoutes = [
+        '/api/admin/categories',
+        '/api/admin/projects',
+        '/api/admin/services',
+        '/api/admin/contacts',
+      ];
+  
+      if (
+        restrictedRoutes.some((route) => req.nextUrl.pathname.startsWith(route)) &&
+        ['POST', 'PUT', 'DELETE', 'GET'].includes(req.method)
+      ) {
+        const role = (payload as DecodedToken).role;
+        if (role !== Role.ADMIN && role !== Role.SUPER_ADMIN) {
+          return new NextResponse('Access Denied', { status: 403 });
+        }
+      }
+  
+      return NextResponse.next();
+    } catch (error) {
+      console.error('Authentication failed', error);
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
+  }
+  
+  export const config = {
+    matcher: ['/api/admin/:path*'],
+  };

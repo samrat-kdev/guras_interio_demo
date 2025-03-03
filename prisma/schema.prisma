@@ -4,6 +4,148 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// generator client {
+//   provider = "prisma-client-js"
+// }
+  
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+//  // Authentication
+//  model User {
+//   id            String    @id @default(cuid())
+//   email         String    @unique
+//   password      String
+//   name          String
+//   role          Role      @default(ADMIN)
+//   createdAt     DateTime  @default(now())
+//   updatedAt     DateTime  @updatedAt
+//  }
+//  enum Role {
+//   ADMIN
+//   SUPER_ADMIN
+//  }
+//  // Categories for portfolio projects
+//  model Category {
+//   id          String     @id @default(cuid())
+//   name        String     @unique
+//   description String?
+//   images      CategoryImage[]  
+//   projects    Project[]
+//   services    Service[]
+//   createdAt   DateTime   @default(now())
+//   updatedAt   DateTime   @updatedAt
+//  }
+
+// model CategoryImage{
+//   id String @id @default(cuid())
+//   url String
+//   alt String?
+//   categoryId String
+//   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+//  // Services offered by GurasInterio
+//  model Service {
+//   id          String   @id @default(cuid())
+//   servicecode String @unique
+//   title       String
+//   description String   @db.Text
+//   features    Json?    // Stores array of features
+//   pricing     Json?    // Stores pricing information
+//   serviceImages ServiceImage[]
+//   categoryId  String
+//   category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+//   isActive    Boolean  @default(true)
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+// }
+
+// model ServiceImage{
+//   id String @id @default(cuid())
+//   url String
+//   alt String?
+//   serviceId String
+//   service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+// model Project {
+//   id          String   @id @default(cuid())
+//   projectcode String @unique 
+//   title       String
+//   description String   @db.Text
+//   location    String?
+//   client      String?
+//   completionDate DateTime?
+//   categoryId  String
+//   category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+//   images      ProjectImage[]
+//   featured    Boolean  @default(false)
+//   isActive    Boolean  @default(true)
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+
+// }
+
+//  // Project images
+//  model ProjectImage {
+//   id        String   @id @default(cuid())
+//   url       String
+//   alt       String?
+//   projectId String
+//   project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+//   order     Int      @default(0)
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//  }
+//  // Contact form submissions
+//  model Contact {
+//   id            String   @id @default(cuid())
+//   name          String
+//   email         String
+//   phone         String
+//   message       String   @db.Text
+//   preferredService String?
+//   inquiryType    InquiryType @default(GENERAL)
+//   budget        Decimal? @db.Decimal(10, 2)
+//   projectType   ProjectType?
+//   timeline      String?
+//   status        ContactStatus @default(NEW)
+//   createdAt     DateTime @default(now())
+//   updatedAt     DateTime @updatedAt
+//  }
+//  enum InquiryType {
+//   GENERAL
+//   SUPPORT
+//   OTHERS
+//  }
+//  enum ProjectType {
+//   RESIDENTIAL
+//   COMMERCIAL
+//   OFFICE
+//   OTHERS
+//  }
+//  enum ContactStatus {
+//   NEW
+//   IN_PROGRESS
+//   CONTACTED
+//   CONVERTED
+//   CLOSED
+//  }
+//  // Site settings for dynamic content
+//  model SiteSetting {
+//   id        String   @id @default(cuid())
+//   key       String   @unique
+//   value     Json
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//  }
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,76 +155,90 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
- // Authentication
- model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  password      String
-  name          String
-  role          Role      @default(ADMIN)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
- }
- enum Role {
-  ADMIN
-  SUPER_ADMIN
- }
- // Categories for portfolio projects
- model Category {
-  id          String     @id @default(cuid())
-  name        String     @unique
-  description String?
-  projects    Project[]
-  services    Service[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
- }
- // Services offered by GurasInterio
- model Service {
-  id          String   @id @default(cuid())
-  servicecode String @unique
-  title       String
-  description String   @db.Text
-  features    Json?    // Stores array of features
-  pricing     Json?    // Stores pricing information
-  serviceImages ServiceImage[]
-  categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+// Authentication
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model ServiceImage{
-  id String @id @default(cuid())
-  url String
-  alt String?
+enum Role {
+  ADMIN
+  SUPER_ADMIN
+}
+
+// Categories for portfolio projects
+model Category {
+  id          String          @id @default(cuid())
+  name        String          @unique
+  description String?
+  images      CategoryImage[]
+
+  services  Service[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model CategoryImage {
+  id         String   @id @default(cuid())
+  url        String
+  alt        String?
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// Services offered by GurasInterio
+model Service {
+  id            String         @id @default(cuid())
+  servicecode   String         @unique
+  title         String
+  description   String         @db.Text
+  features      Json? // Stores array of features
+  pricing       Json? // Stores pricing information
+  serviceImages ServiceImage[]
+  categoryId    String
+  category      Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  projects      Project[]
+  isActive      Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model ServiceImage {
+  id        String   @id @default(cuid())
+  url       String
+  alt       String?
   serviceId String
-  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  service   Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Project {
-  id          String   @id @default(cuid())
-  projectcode String @unique 
-  title       String
-  description String   @db.Text
-  location    String?
-  client      String?
+  id             String         @id @default(cuid())
+  projectcode    String         @unique
+  title          String
+  description    String         @db.Text
+  location       String?
+  client         String?
   completionDate DateTime?
-  categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  images      ProjectImage[]
-  featured    Boolean  @default(false)
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
+  serviceId      String
+  service        Service        @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  images         ProjectImage[]
+  featured       Boolean        @default(false)
+  isActive       Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
 }
 
- // Project images
- model ProjectImage {
+// Project images
+model ProjectImage {
   id        String   @id @default(cuid())
   url       String
   alt       String?
@@ -91,40 +247,51 @@ model Project {
   order     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
- }
- // Contact form submissions
- model Contact {
-  id            String   @id @default(cuid())
-  name          String
-  email         String
-  phone         String
-  message       String   @db.Text
+}
+
+// Contact form submissions
+model Contact {
+  id               String        @id @default(cuid())
+  name             String
+  email            String
+  phone            String
+  message          String        @db.Text
   preferredService String?
-  budget        Decimal? @db.Decimal(10, 2)
-  projectType   ProjectType?
-  timeline      String?
-  status        ContactStatus @default(NEW)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
- }
- enum ProjectType {
+  inquiryType      InquiryType   @default(GENERAL)
+  budget           Decimal?      @db.Decimal(10, 2)
+  projectType      ProjectType?
+  timeline         String?
+  status           ContactStatus @default(NEW)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+enum InquiryType {
+  GENERAL
+  SUPPORT
+  OTHERS
+}
+
+enum ProjectType {
   RESIDENTIAL
   COMMERCIAL
   OFFICE
-  OTHER
- }
- enum ContactStatus {
+  OTHERS
+}
+
+enum ContactStatus {
   NEW
   IN_PROGRESS
   CONTACTED
   CONVERTED
   CLOSED
- }
- // Site settings for dynamic content
- model SiteSetting {
+}
+
+// Site settings for dynamic content
+model SiteSetting {
   id        String   @id @default(cuid())
   key       String   @unique
   value     Json
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
- }
+  updatedAt DateTime @updatedAt
+}
