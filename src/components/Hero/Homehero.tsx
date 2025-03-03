@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const HomeHero = () => {
   return (
     <motion.section
-      className="relative min-h-[80vh] md:min-h-[94vh] bg-cover bg-center flex justify-center items-center"
+      className="relative min-h-[90vh] md:min-h-[94vh] bg-cover bg-center flex justify-center items-center"
       style={{ backgroundImage: `url('/assests/About.jpg')` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

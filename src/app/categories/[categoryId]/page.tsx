@@ -1,11 +1,26 @@
 'use client';
-import React from 'react'
+
+import React, { useEffect } from 'react'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import ServiceHero from '@/components/Hero/Servicehero'
 import ServicesComponents from '@/components/ServicesComp/Services'
+import axios from 'axios'
 
-export default function Services() {
+export default function Services({ params }: { params: { categoryId: string } }) {
+  const { categoryId } = params;
+  const [services, setServices] = React.useState([]);
+
+  useEffect(() => {
+    // Fetch services based on the selected category ID with axios
+    const fetchServices = async () => {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/categories/${categoryId}`);
+      setServices(response.data);
+      console.log(response.data);
+    };
+    fetchServices();
+
+  }, [categoryId]);
 
   return (
     <>

@@ -1,12 +1,38 @@
 "use client";
 import { Phone, Mail, Menu, X, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { Category } from "@/types";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const Navbar = () => {
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    async function getCategories() {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/admin/categories`);
+        console.log("Response:", response.data);
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    }
+
+    getCategories();
+  }, []);
 
   return (
     <>
@@ -43,51 +69,65 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              {/* Services Dropdown (Now Clickable) */}
-              <li
-                className="py-2 relative"
-                onMouseEnter={() => window.innerWidth >= 1024 && setIsServicesOpen(true)}
-                onMouseLeave={() => window.innerWidth >= 1024 && setIsServicesOpen(false)}
-              >
-                <div className="flex items-center justify-between w-full lg:w-auto">
-                  <Link
-                    href="/services"
-                    className="text-black hover:text-[#8e2d75] transition w-full lg:w-auto"
-                  >
-                    Services
-                  </Link>
-                  <button
-                    className="ml-2 focus:outline-none lg:hidden"
-                    onClick={() => setIsServicesOpen(!isServicesOpen)}
-                  >
-                    <ChevronDown className={`transition-transform ${isServicesOpen ? "rotate-180" : "rotate-0"}`} />
-                  </button>
-                </div>
+              {/* Categories Dropdown */}
+              <li className="">
+                <DropdownMenu>
+                  <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {categories.length > 0 ? (
+                      categories.map((category: Category) => (
+                        <DropdownMenuItem key={category.id}>
+                          <Link
+                            href={`/categories/${category.id}`}
+                            className="text-black hover:text-[#8e2d75] transition"
+                          >
+                            {category.name}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))
+                    ) : (
+                      <DropdownMenuItem>No Categories</DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
 
-                {/* Dropdown Menu */}
                 <div
-                  className={`absolute lg:left-0 mt-2 bg-white border rounded shadow-lg w-64 z-50 transition-all duration-300 ease-in-out transform ${isServicesOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}
+                  className={`absolute lg:left-0 mt-2 bg-white border rounded shadow-lg w-64 z-50 transition-all duration-300 ease-in-out transform ${isCategoriesOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 hidden"}`}
                 >
                   <ul className="flex flex-col">
-                    {[
-                      { name: "Closet", href: "/services/closet" },
-                      { name: "Modular Kitchen Closet", href: "/services/modularkitchen" },
-                      { name: "TV Cabinet", href: "/services/tvcabinet" },
-                      { name: "Office Furniture", href: "/services/officefurniture" },
-                      { name: "False Ceiling", href: "/services/falseceiling" },
-                      { name: "Wooden or Steel Railing", href: "/services/woodenandsteelrailing" },
-                      { name: "Parqueting", href: "/services/parqueting" },
-                    ].map((service) => (
-                      <li key={service.name}>
-                        <Link
-                          href={service.href}
-                          className="block px-4 py-2 text-black hover:bg-[#8e2d75] hover:text-white transition"
-                          onClick={() => setIsServicesOpen(false)}
-                        >
-                          {service.name}
-                        </Link>
-                      </li>
-                    ))}
+                    <li className="relative">
+                      <button
+                        className="w-full text-left px-4 py-2 text-black hover:bg-[#8e2d75] hover:text-white transition flex justify-between"
+                        onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      >
+                        Services <ChevronDown className={`ml-2 transition-transform ${isServicesOpen ? "rotate-180" : "rotate-0"}`} />
+                      </button>
+                      <div
+                        className={`absolute left-full top-0 mt-0 bg-white border rounded shadow-lg w-64 z-50 transition-all duration-300 ease-in-out transform ${isServicesOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 hidden"}`}
+                      >
+                        <ul className="flex flex-col">
+                          {[
+                            { name: "Closet", href: "/services/closet" },
+                            { name: "Modular Kitchen Closet", href: "/services/modularkitchen" },
+                            { name: "TV Cabinet", href: "/services/tvcabinet" },
+                            { name: "Office Furniture", href: "/services/officefurniture" },
+                            { name: "False Ceiling", href: "/services/falseceiling" },
+                            { name: "Wooden or Steel Railing", href: "/services/woodenandsteelrailing" },
+                            { name: "Parqueting", href: "/services/parqueting" },
+                          ].map((service) => (
+                            <li key={service.name}>
+                              <Link
+                                href={service.href}
+                                className="block px-4 py-2 text-black hover:bg-[#8e2d75] hover:text-white transition"
+                                onClick={() => setIsServicesOpen(false)}
+                              >
+                                {service.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </li>
                   </ul>
                 </div>
               </li>

@@ -2,15 +2,15 @@
 import React from 'react'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import ServiceHero from '@/components/Hero/Servicehero'
-import ServicesComponents from '@/components/ServicesComp/Services'
+import CategoryHero from '@/components/Hero/Categoryhero'
+import Categories from '@/components/ServicesComp/Categories'
 
-export default function Services() {
+export default function Category() {
 
   return (
     <>
       <Header />
-      <ServiceHero />
+      <CategoryHero />
       <main className="min-h-screen p-4 sm:p-6 md:p-8">
         <div className="text-center my-10">
           <div className="flex items-center justify-center">
@@ -20,12 +20,11 @@ export default function Services() {
             </span>
             <div className="w-12 sm:w-16 md:w-20 border-t-2 border-[#6b1b55]"></div>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif mt-2">Services</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif mt-2">Categories</h2>
         </div>
         <div>
 
-        
-          <ServicesComponents />
+          <Categories />
         </div>
 
       </main>

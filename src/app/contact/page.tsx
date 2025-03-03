@@ -1,29 +1,27 @@
-'use client'
+'use client';
 
-
-import Map from "@/components/Contact/Map"
-import Info from "@/components/Contact/Info"
-import { useState } from 'react'
-import Header from '@/components/Header'
-import Footer from "@/components/Footer"
-import ContactHero from "@/components/Hero/ContactHero"
-import Question from "@/components/Contact/Question"
-
+import Map from "@/components/Contact/Map";
+import Info from "@/components/Contact/Info";
+import { useState } from 'react';
+import Header from '@/components/Header';
+import Footer from "@/components/Footer";
+import ContactHero from "@/components/Hero/ContactHero";
+import Question from "@/components/Contact/Question";
 
 const inquiryOptions = [
   { value: "general", label: "General Inquiry" },
   { value: "support", label: "Support" },
   { value: "feedback", label: "Feedback" },
-  { value: "other", label: "Other" }
+  { value: "others", label: "Others" }
 ];
-export default function Contact() {
 
+export default function Contact() {
   return (
     <>
       <Header />
       <ContactHero />
       <main className="min-h-screen p-8">
-
+        {/* Location Heading */}
         <div className="flex justify-center items-center mt-4 mb-4">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-800">
             Our <span className="relative inline-block group">
@@ -32,23 +30,24 @@ export default function Contact() {
             </span>
           </h1>
         </div>
+
+        {/* Map Component */}
         <Map />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 ">
+        {/* Grid for Form and Info */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {/* Question Component (contains the form) */}
           <div>
-            <form className="space-y-4">
-              <Question inquiryOptions={inquiryOptions} />
-            </form>
+            <Question inquiryOptions={inquiryOptions} />
           </div>
 
+          {/* Info Component */}
           <div>
             <Info />
           </div>
         </div>
-
       </main>
       <Footer />
     </>
-  )
-
+  );
 }

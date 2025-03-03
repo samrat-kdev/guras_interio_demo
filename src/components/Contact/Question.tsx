@@ -2,32 +2,96 @@
 
 import React, { useState } from "react";
 import { ChevronRight } from "lucide-react";
+import axios from "axios";
+import { config } from "process";
+import { toast } from "sonner"
+
+
 interface InquiryOption {
   value: string;
   label: string;
-} interface FeedbackProps {
+}
+
+interface FeedbackProps {
   inquiryOptions: InquiryOption[];
 }
+
 const Feedback: React.FC<FeedbackProps> = ({ inquiryOptions }) => {
   const [inquiryType, setInquiryType] = useState("");
   const [projectType, setProjectType] = useState("");
   const [message, setMessage] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [budget, setBudget] = useState("");
+  const [servicesType, setServicesType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    console.log("Form submitted with:", { projectType, inquiryType, message });
+    console.log("Prevent default triggered"); // Check if this logs before refresh
 
-    // Simulate form submission
-    setTimeout(() => {
+    setIsLoading(true);
+
+    try {
+
+      console.log("Form submitted with:", {
+        projectType,
+        inquiryType,
+        message,
+        name,
+        email,
+        phone,
+        timeline,
+        budget,
+        servicesType
+      });
+      const data = {
+        projectType,
+        inquiryType,
+        message,
+        name,
+        email,
+        phone,
+        timeline,
+        budget,
+        servicesType
+      }
+
+      // 
+      // make api call with axios
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/contact`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 201) {
+        toast.success("Form submitted successfully")
+        console.log(response.data);
+        console.log("Form submitted successfully");
+
+      }
+
       setIsLoading(false);
+
+      // Reset form fields
       setProjectType("");
       setInquiryType("");
       setMessage("");
-    }, 3000);
+      setName("");
+      setEmail("");
+      setPhone("");
+      setTimeline("");
+      setBudget("");
+      setServicesType("");
+    } catch (error) {
+      console.error("Form submission failed:", error);
+      toast.error(`Form is not submitted: ${error}`)
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -46,9 +110,11 @@ const Feedback: React.FC<FeedbackProps> = ({ inquiryOptions }) => {
           <input
             type="text"
             id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Enter your name"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8e2d75]"
-            required
+
           />
         </div>
 
@@ -60,6 +126,8 @@ const Feedback: React.FC<FeedbackProps> = ({ inquiryOptions }) => {
           <input
             type="text"
             id="number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             placeholder="Enter your phone number"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8e2d75]"
             required
@@ -74,6 +142,8 @@ const Feedback: React.FC<FeedbackProps> = ({ inquiryOptions }) => {
           <input
             type="email"
             id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8e2d75]"
             required
@@ -100,24 +170,49 @@ const Feedback: React.FC<FeedbackProps> = ({ inquiryOptions }) => {
           </select>
         </div>
         <div>
+          <label htmlFor="service-type" className="block text-sm font-medium text-gray-700 mb-1">
+            Service Type
+          </label>
+          <select
+            id="project-type"
+            value={servicesType}
+            onChange={(e) => setServicesType(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8e2d75]"
+
+          >
+            <option value="">Select a service type</option>
+            <option value="residential">R</option>
+            <option value="commercial">C</option>
+            <option value="office">O</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+        {/* Timeline Input */}
+        <div>
           <label htmlFor="Timeline" className="block text-sm font-medium text-gray-700 mb-1">
             Timeline*
           </label>
           <input
-            type="Text"
+            type="text"
             id="Timeline"
+            value={timeline}
+            onChange={(e) => setTimeline(e.target.value)}
             placeholder="Enter your Timeline"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8e2d75]"
             required
           />
         </div>
+
+        {/* Budget Input */}
         <div>
           <label htmlFor="Budget" className="block text-sm font-medium text-gray-700 mb-1">
             Budget*
           </label>
           <input
-            type="Number"
+            type="number"
             id="Budget"
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
             placeholder="Enter your Budget"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8e2d75]"
             required
