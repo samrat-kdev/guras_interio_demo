@@ -2,8 +2,8 @@
 import React from 'react'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import CategoryHero from '@/components/Hero/Categoryhero'
-import Categories from '@/components/ServicesComp/Categories'
+import CategoryHero from '@/components/Category/Categoryhero'
+import Categories from '@/components/Category/Categories'
 
 export default function Category() {
 

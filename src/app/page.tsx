@@ -2,7 +2,7 @@
 
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
-import HomeHero from "@/components/Hero/Homehero"
+import HomeHero from "@/components/Home/Homehero"
 import Carousel from "@/components/Home/Carousel"
 
 import HomeBan1 from "@/components/Home/HomeBan1"

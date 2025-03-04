@@ -5,7 +5,7 @@ import Info from "@/components/Contact/Info";
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from "@/components/Footer";
-import ContactHero from "@/components/Hero/ContactHero";
+import ContactHero from "@/components/Contact/ContactHero";
 import Question from "@/components/Contact/Question";
 
 const inquiryOptions = [

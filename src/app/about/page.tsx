@@ -2,7 +2,7 @@
 
 import Head from "next/head"
 import Header from "@/components/Header"
-import AboutHero from "@/components/Hero/Abouthero"
+import AboutHero from "@/components/AboutComp/Abouthero"
 import AboutBan1 from "@/components/AboutComp/AboutBan1"
 import Footer from "@/components/Footer"
 import PhotoBooth from "@/components/AboutComp/PhotoBooth"

@@ -1,7 +1,7 @@
 'use client'
 
 import Header from "@/components/Header";
-import PortfolioHero from "@/components/Hero/PortfolioHero";
+import PortfolioHero from "@/components/Portfolio/PortfolioHero";
 import Footer from "@/components/Footer";
 import PortfolioComp from "@/components/Portfolio/PortfolioComp";
 import PortGallery from "@/components/Portfolio/PortGallery";
