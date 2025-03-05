@@ -71,6 +71,10 @@ interface DecodedToken extends JWTPayload {
   export async function middleware(req: NextRequest) {
     const token = req.cookies.get('token')?.value;
     if (!token) {
+      console.log('No token found');
+      // setTimeout(() => {
+      //   NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      // }, 8000);
       return NextResponse.redirect(new URL('/login', req.url));
     }
   

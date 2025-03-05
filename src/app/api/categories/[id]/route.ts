@@ -12,6 +12,11 @@ export async function GET(
         where: { id },
         include: {
           services: true,
+          images: {
+            select: {
+              url: true,
+            },
+          },
         },
       });
       if (!category) {

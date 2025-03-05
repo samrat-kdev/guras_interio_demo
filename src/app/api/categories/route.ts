@@ -7,6 +7,11 @@ export async function GET() {
         const categories = await prisma.category.findMany({
             include: {
                 services: true,
+                images: {
+                    select: {
+                        url: true,
+                    },
+                },
             },
         });
 
