@@ -78,6 +78,7 @@ interface DecodedToken extends JWTPayload {
       return NextResponse.redirect(new URL('/login', req.url));
     }
   
+    
     try {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       const { payload } = await jwtVerify(token, secret);

@@ -24,7 +24,7 @@ export async function POST(req: NextRequest){
         const token = jwt.sign({userId: user.id, role: user.role}, process.env.JWT_SECRET!,{ expiresIn: '1h',});
         // Set the JWT as an HttpOnly cookie
         const response = NextResponse.json({ token, message: 'Login successful'});
-        response.cookies.set('token', token, { httpOnly: true, maxAge: 3600, path: '/'});
+        response.cookies.set('token', token, { httpOnly: true, maxAge: 3600, path: '/admin'});
 
         return response;
     } catch (error) {
