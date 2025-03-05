@@ -11,17 +11,24 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await fetch('/api/login', {
+    const data = { 
+      email: email, 
+      password : password
+     };
+
+    const res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(data),
     });
 
     if (res.ok) {
-      router.push('/');
+      router.push('/admin');
+      console.log('Login successful');
     } else {
       const data = await res.json();
       setError(data.error);
+      console.error(data.error);
     }
   };
 
