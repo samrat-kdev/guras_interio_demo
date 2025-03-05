@@ -73,7 +73,7 @@ export async function DELETE(
         });
         return NextResponse.json({ message: 'Category deleted successfully', deletedCategory: category });
     } catch (error) {
-        let errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
         console.error('Error deleting category:', errorMessage);
         return NextResponse.json(
             { error: 'Internal Server Error', details: errorMessage },
