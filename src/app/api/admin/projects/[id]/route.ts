@@ -1,13 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
+interface RouteParams {
+  params: Promise<{
+    id: string;
+  }>;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
 // Get a specific project by ID
 export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await context.params;
     const project = await prisma.project.findUnique({
       where: { id },
       include: {
@@ -30,18 +37,18 @@ export async function GET(
 
 // Update a specific project by ID
 export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await context.params;
     const projectExist = await prisma.project.findUnique({
       where: { id },
     });
     if (!projectExist) {
       return NextResponse.json({ error: "Project not found" }, { status: 404 });
     }
-    const data = await req.json();
+    const data = await request.json();
     const project = await prisma.project.update({
       where: { id },
       data,
@@ -61,11 +68,11 @@ export async function PUT(
 
 // Delete a specific project by ID
 export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await context.params;
     await prisma.project.delete({
       where: { id },
     });

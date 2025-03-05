@@ -1,13 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
+interface RouteParams {
+  params: Promise<{
+    id: string;
+  }>;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
 // Fetch a specific service by ID
 export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await context.params;
     const service = await prisma.service.findUnique({
       where: { id },
       include: {
@@ -29,12 +36,12 @@ export async function GET(
 
 // Update a specific service by ID
 export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: RouteParams
 ) {
   try {
-    const { id } = params;
-    const data = await req.json();
+    const { id } = await context.params;
+    const data = await request.json();
     const service = await prisma.service.update({
       where: { id },
       data,
@@ -51,11 +58,11 @@ export async function PUT(
 
 // Delete a specific service by ID
 export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await context.params;
     await prisma.service.delete({
       where: { id },
     });

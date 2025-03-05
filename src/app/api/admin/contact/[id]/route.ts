@@ -1,29 +1,16 @@
-import { NextRequest,NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 
-// Zod schema for creating a contact
-// const createContactSchema = z.object({
-//   name: z.string().min(5, "Name is required"),
-//   email: z.string().email("Invalid email"),
-//   phone: z.string().min(10, "Phone is required"),
-//   message: z.string().min(10, "Message is required"),
-//   preferredService: z.string().optional(),
-//   budget: z.coerce.number().optional(),
-//   projectType: z.preprocess(
-//     (a) => typeof a === "string" ? a.toUpperCase() : a,
-//     z.enum(["RESIDENTIAL", "COMMERCIAL", "OFFICE", "OTHERS"]).optional()
-//   ),
-//   timeline: z.string().optional(),
-//   inquiryType: z.preprocess(
-//     (a) => typeof a === "string" ? a.toUpperCase() : a,
-//     z.enum(["GENERAL", "SUPPORT", "OTHERS"]).optional()
-//   ),
-// });
+interface RouteParams {
+  params: Promise<{
+    id: string;
+  }>;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
 // Zod schema for updating a contact
 const updateContactSchema = z.object({
-//   id: z.string().optional(),
   name: z.string().min(5, "Name is required"),
   email: z.string().email("Invalid email").optional(),
   phone: z.string().min(10, "Phone is required"),
@@ -42,9 +29,12 @@ const updateContactSchema = z.object({
   status: z.enum(["NEW", "IN_PROGRESS", "CONTACTED", "CONVERTED", "CLOSED"]).optional(),
 });
 
-export async function GET(req: NextResponse, { params }: { params: { id: string } }) {
+export async function GET(
+    request: NextRequest,
+    context: RouteParams
+) {
     try {
-        const { id } = params;
+        const { id } = await context.params;
         const contact = await prisma.contact.findUnique({
             where: { id },
         });
@@ -58,32 +48,13 @@ export async function GET(req: NextResponse, { params }: { params: { id: string 
     }
 }
 
-// export async function PUT(req: NextRequest, { params }: { params: { id: string}}) {
-//     try {
-//         const { id } = await params;
-//         const contact = await prisma.contact.findUnique({
-//             where: { id },
-//         });
-//         if (!contact) {
-//             return NextResponse.json({ error: "Contact not found" }, { status: 404 });
-//         }
-        
-//         const { name, email, message } = await req.json();
-//         const updatedContact = await prisma.contact.update({
-//             where: { id },
-//             data: { name, email, message },
-//         });
-//         return NextResponse.json(updatedContact, { status: 200 });
-//     } catch (error) {
-//         console.error('Error updating contact:', error);
-//         return NextResponse.json({ error: 'Internal Server Error'}, { status: 500 });
-//     }
-// }
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+    request: NextRequest,
+    context: RouteParams
+) {
     try {
-      const body = await req.json();
-      const { id } = params;
-      // Validate the update payload with Zod
+      const { id } = await context.params;
+      const body = await request.json();
       const parsed = updateContactSchema.safeParse(body);
       if (!parsed.success) {
         return NextResponse.json({ error: parsed.error.errors }, { status: 400 });
@@ -91,7 +62,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
       const data = parsed.data;
   
       const updatedContact = await prisma.contact.update({
-        where: { id: id },
+        where: { id },
         data: {
           name: data.name,
           email: data.email,
@@ -116,25 +87,14 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
         { status: 500 }
       );
     }
-  }
+}
 
-// export async function DELETE(req: NextRequest, { params }: { params: { id: string }}) {
-//     try {
-//         const { id } = await params;
-//         await prisma.contact.delete({
-//             where: { id },
-//         });
-//         return NextResponse.json({ message: 'Contact deleted successfully' }, { status: 200 });
-//     } catch (error) {
-//         console.error('Error deleting contact:', error instanceof Error ? error.message : error);
-//         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-//     }
-// }
-export async function DELETE(req: NextRequest,  { params }: { params: { id: string } }) {
+export async function DELETE(
+    request: NextRequest,
+    context: RouteParams
+) {
     try {
-      
-      const { id }= params;
-  
+      const { id } = await context.params;
       if (!id) {
         return NextResponse.json(
           { error: "Contact ID is required" },
@@ -157,4 +117,4 @@ export async function DELETE(req: NextRequest,  { params }: { params: { id: stri
         { status: 500 }
       );
     }
-  }
+}

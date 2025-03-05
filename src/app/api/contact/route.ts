@@ -2,7 +2,13 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 
-export async function GET() {
+interface RouteParams {
+  params?: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+export async function GET(
+) {
     try {
         const contact = await prisma.project.findMany();
         return NextResponse.json(contact);
@@ -31,9 +37,11 @@ const createContactSchema = z.object({
     ),
   });
 
-  export async function POST(req: NextRequest) {
+export async function POST(
+    request: NextRequest,
+) {
     try {
-      const body = await req.json();
+      const body = await request.json();
       // Validate the incoming payload using Zod
       const parsed = createContactSchema.safeParse(body);
       if (!parsed.success) {
@@ -69,4 +77,4 @@ const createContactSchema = z.object({
         { status: 500 }
       );
     }
-  }
+}

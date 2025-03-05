@@ -1,21 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
+interface RouteParams {
+  params: Promise<{
+    id: string;
+  }>;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
 // Fetch a specific category by ID
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    context: RouteParams
 ) {
     try {
+        const { id } = await context.params;
         const category = await prisma.category.findUnique({
-            where: { id: params.id },
+            where: { id },
             include: {
                 services: true,
                 images: {
                     select: {
                         url: true,
                     },
-                }
+                },
             },
         });
         if (!category) {
@@ -34,18 +42,19 @@ export async function GET(
 // Update a specific category by ID
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    context: RouteParams
 ) {
     try {
+        const { id } = await context.params;
         const categoryExist = await prisma.category.findUnique({
-            where: { id: params.id },
+            where: { id },
         });
         if (!categoryExist) {
             return NextResponse.json({ error: 'Category not found' }, { status: 404 });
         }
         const data = await request.json();
         const category = await prisma.category.update({
-            where: { id: params.id },
+            where: { id },
             data,
         });
         return NextResponse.json({ message: 'Category updated successfully', category }, { status: 201 });
@@ -61,15 +70,16 @@ export async function PUT(
 // Delete a specific category by ID
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    context: RouteParams
 ) {
-    if (!params.id) {
-        return NextResponse.json({ error: 'Category ID is required' }, { status: 400 });
-    }
-
     try {
+        const { id } = await context.params;
+        if (!id) {
+            return NextResponse.json({ error: 'Category ID is required' }, { status: 400 });
+        }
+
         const category = await prisma.category.delete({
-            where: { id: params.id },
+            where: { id },
         });
         return NextResponse.json({ message: 'Category deleted successfully', deletedCategory: category });
     } catch (error) {
