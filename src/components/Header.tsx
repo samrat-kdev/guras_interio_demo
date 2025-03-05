@@ -23,9 +23,9 @@ const Navbar = () => {
   useEffect(() => {
     async function getCategories() {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/admin/categories`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/categories`);
         console.log("Response:", response.data);
-        setCategories(response.data);
+        setCategories(response.data.categories);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }

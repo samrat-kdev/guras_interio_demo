@@ -6,26 +6,35 @@ import Header from '@/components/Header'
 import ServiceHero from '@/components/Hero/Servicehero'
 import ServicesComponents from '@/components/ServicesComp/Services'
 import axios from 'axios'
+export default function Services({ params }: { params: Promise<{ categoryId: string }> }) {
+  const [categoryId, setCategoryId] = React.useState<string | null>(null);
 
-export default function Services({ params }: { params: { categoryId: string } }) {
-  const { categoryId } = params;
+  React.useEffect(() => {
+    params.then((resolvedParams) => {
+      setCategoryId(resolvedParams.categoryId);
+    });
+  }, [params]);
+
   const [services, setServices] = React.useState([]);
+  const [images, setImages] = React.useState([]);
 
   useEffect(() => {
-    // Fetch services based on the selected category ID with axios
+    if (!categoryId) return; // Prevents fetching when categoryId is null
+
     const fetchServices = async () => {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/categories/${categoryId}`);
       setServices(response.data);
-      console.log(response.data);
+      setImages(response.data.images);
     };
+    
     fetchServices();
-
   }, [categoryId]);
+
 
   return (
     <>
       <Header />
-      <ServiceHero />
+      <ServiceHero categories={services} images={images}/>
       <main className="min-h-screen p-4 sm:p-6 md:p-8">
         <div className="text-center my-10">
           <div className="flex items-center justify-center">

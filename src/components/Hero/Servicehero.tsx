@@ -3,11 +3,18 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const HomeHero = () => {
+interface ServiceHeroProps {
+  categories: { name: string };
+  images: string[];
+}
+
+const ServiceHero: React.FC<ServiceHeroProps> = ({ categories, images }) => {
+  console.log(categories);
+
   return (
     <motion.section
       className="relative min-h-[94vh] bg-cover bg-center flex justify-center items-center"
-      style={{ backgroundImage: `url('/assests/t.jpg')` }}
+      style={{ backgroundImage: `url(${images?.[0].toString()})` }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
@@ -38,7 +45,7 @@ const HomeHero = () => {
             Services
           </motion.a>
           <span className="mx-2">›</span>
-
+          <span>{categories?.name}</span>
         </div>
 
         {/* Heading */}
@@ -48,8 +55,7 @@ const HomeHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1.2 }}
         >
-          SERVICES
-
+          {categories?.name}
 
           <motion.span
             className="block bg-[#8e2d75] w-20 h-2 mt-2 mx-auto"
@@ -58,11 +64,10 @@ const HomeHero = () => {
             transition={{ duration: 1, delay: 1.5 }}
             style={{ transformOrigin: "left" }}
           ></motion.span>
-
         </motion.h1>
       </motion.div>
     </motion.section>
   );
 };
 
-export default HomeHero;
+export default ServiceHero;

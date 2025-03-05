@@ -6,14 +6,14 @@ import ServiceHero from '@/components/Hero/Servicehero'
 import ServicesComponents from '@/components/ServicesComp/Services'
 
 export default function Services() {
-
+x
   return (
     <>
       <Header />
       <ServiceHero />
       <main className="min-h-screen p-4 sm:p-6 md:p-8">
         <div className="text-center my-10">
-          <div className="flex items-center justify-center">
+          <div className="xflex items-center justify-center">
             <div className="w-12 sm:w-16 md:w-20 border-t-2 border-[#6b1b55]"></div>
             <span className="mx-2 sm:mx-4 text-[#6b1b55] tracking-widest uppercase text-sm sm:text-base md:text-lg">
               Best Features
