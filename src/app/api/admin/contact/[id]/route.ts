@@ -44,7 +44,7 @@ const updateContactSchema = z.object({
 
 export async function GET(req: NextResponse, { params }: { params: { id: string } }) {
     try {
-        const { id } = await params;
+        const { id } = params;
         const contact = await prisma.contact.findUnique({
             where: { id },
         });
@@ -82,7 +82,7 @@ export async function GET(req: NextResponse, { params }: { params: { id: string 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
     try {
       const body = await req.json();
-      const { id } = await params;
+      const { id } = params;
       // Validate the update payload with Zod
       const parsed = updateContactSchema.safeParse(body);
       if (!parsed.success) {
@@ -133,7 +133,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 export async function DELETE(req: NextRequest,  { params }: { params: { id: string } }) {
     try {
       
-      const id = await params.id;
+      const { id }= params;
   
       if (!id) {
         return NextResponse.json(
